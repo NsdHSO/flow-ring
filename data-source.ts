@@ -1,7 +1,8 @@
 import { DataSource } from "typeorm";
-import { Driver } from "./entity/driver/Driver";
-import { Elien }  from "./entity/user/Elien";
-import * as dotenv                     from 'dotenv';
+import { Driver }     from "./entity/driver/Driver";
+import { Location }   from "./entity/driver/Location";
+import { Elien }      from "./entity/user/Elien";
+import * as dotenv    from 'dotenv';
 dotenv?.config( { path : './.env' } );
 
 export  const AppDataSource = new DataSource({
@@ -13,7 +14,7 @@ export  const AppDataSource = new DataSource({
   database: process.env.PGDATABASE,
   synchronize: true,
   logging: false,
-  entities: [Driver, Elien],
+  entities: [Driver, Elien, Location],
   migrations: [],
   subscribers: [],
 })

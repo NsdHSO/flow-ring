@@ -1,23 +1,36 @@
 import {
   Column,
   Entity,
-  PrimaryGeneratedColumn
-} from "typeorm";
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+}                   from "typeorm";
+import { Location } from "./Location";
 
-@Entity ()
+@Entity()
 export class Driver {
-  @PrimaryGeneratedColumn ()
-  id : number
+  @PrimaryGeneratedColumn()
+  id : number;
 
-  @Column ("text")
-  name : string
+  @Column( "text" )
+  name : string;
 
-  @Column ("text")
-  descriprion : string
+  @Column( "text" )
+  description : string;
 
-  @Column ("text")
-  filename : string
+  @Column( "boolean" )
+  license : boolean;
 
-  @Column ("text")
-  license : boolean
+  @Column( "text" )
+  email : string;
+
+  @Column( "text" )
+  dataOfBirth : string;
+
+  @Column()
+  classOfDriver: string;
+
+  @OneToOne( ()=> Location )
+  @JoinColumn()
+  location : Location;
 }
