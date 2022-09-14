@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd435ebb-b141-42d0-8fe9-a2f43e5b2d78" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/entity/driver/Location.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/driver/driver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controller/driver/driver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-source.ts" beforeDir="false" afterPath="$PROJECT_DIR$/data-source.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/driver/Driver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/driver/Driver.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/login/login.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +41,7 @@
     "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.sourceCode.TypeScript",
     "ts.external.directory.path": "/Users/david.nechiforel/Documents/workHome/nodejs/vorkrut/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -72,7 +64,8 @@
       <updated>1662663487400</updated>
       <workItem from="1662663488599" duration="11918000" />
       <workItem from="1662706740795" duration="1075000" />
-      <workItem from="1662753252847" duration="38619000" />
+      <workItem from="1662753252847" duration="38900000" />
+      <workItem from="1662953113685" duration="1685000" />
     </task>
     <servers />
   </component>

@@ -6,9 +6,8 @@ import {
 }                                      from 'express';
 import routerDriver                    from './controller/driver/driver';
 import { AppDataSource }               from "./data-source";
-import { Driver }                      from './entity/driver/Driver';
-import { Location }                    from "./entity/driver/Location";
 import router, { authenticationToken } from './login/login';
+import * as cors from 'cors';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -23,6 +22,8 @@ AppDataSource.initialize().then( async( resp ) => {
 } ).catch( ( err ) => {
   console.error("Error during Data Source initialization:", err)
 } );
+
+app.use(cors())
 
 app.use( ( req, resp, next ) => {
   console.log( req.body );

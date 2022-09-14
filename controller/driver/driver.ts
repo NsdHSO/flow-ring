@@ -48,9 +48,8 @@ routerDriver.post(
 	},
 );
 routerDriver.get(
-	'all/:orderBy?',
+	'/all/:orderBy',
 	async (req: Request, resp: Response) => {
-		console.log('testa');
 		await AppDataSource.getRepository(Driver)
 			.createQueryBuilder('driver')
 			.orderBy(
@@ -69,7 +68,7 @@ routerDriver.get(
 );
 
 routerDriver.get(
-	'/:id',
+	'/getOne/:id',
 	async (req: Request, resp: Response) => {
 		await AppDataSource.getRepository(Driver)
 			.findOne({
