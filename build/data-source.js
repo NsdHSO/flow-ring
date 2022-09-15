@@ -10,7 +10,7 @@ dotenv === null || dotenv === void 0 ? void 0 : dotenv.config({ path: './.env' }
 exports.AppDataSource = new typeorm_1.DataSource({
     type: "postgres",
     host: process.env.PGHOST,
-    port: +process.env.PGPORT,
+    port: 5432,
     username: process.env.PGUSER,
     password: process.env.PGPASSWORD,
     database: process.env.PGDATABASE,
@@ -19,5 +19,8 @@ exports.AppDataSource = new typeorm_1.DataSource({
     entities: [Driver_1.Driver, Elien_1.Elien, Location_1.Location],
     migrations: [],
     subscribers: [],
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 //# sourceMappingURL=data-source.js.map

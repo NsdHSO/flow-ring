@@ -87,7 +87,7 @@ routerDriver.get('/all/:orderBy', function (req, resp) { return __awaiter(void 0
         switch (_a.label) {
             case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(Driver_1.Driver)
                     .createQueryBuilder('driver')
-                    .orderBy("driver.".concat(req.query.orderBy || 'name'))
+                    .orderBy("driver.".concat(req.params.orderBy || 'name'))
                     .getMany()
                     .then(function (drivers) {
                     resp.status(200)
