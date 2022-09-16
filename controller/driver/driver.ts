@@ -1,7 +1,4 @@
-import type {
-	Request,
-	Response,
-} from 'express';
+import type {Request, Response} from 'express';
 import * as express from 'express';
 import {AppDataSource} from '../../data-source';
 import {Driver} from '../../entity/driver/Driver';
@@ -11,7 +8,6 @@ import {authenticationToken} from '../../login/login';
 const routerDriver = express.Router();
 const driverRepository = AppDataSource.getRepository(Driver);
 routerDriver.use(authenticationToken);
-
 routerDriver.post(
 	'/',
 	async (req: Request, resp: Response) => {
@@ -27,7 +23,6 @@ routerDriver.post(
 				throw new Error(err);
 			},
 			);
-
 		newDriver.location = req.body.location;
 		newDriver.license = req.body.license;
 		newDriver.name = req.body.firstName + req.body.lastName;
@@ -35,7 +30,6 @@ routerDriver.post(
 		newDriver.dataOfBirth = req.body.dataOfBirth;
 		newDriver.classOfDriver = req.body.classOfDriver;
 		newDriver.description = req.body.description;
-
 		await AppDataSource.getRepository(Driver)
 			.save(newDriver)
 			.then(driver => {
@@ -52,6 +46,7 @@ routerDriver.get(
 	async (req: Request, resp: Response) => {
 		await AppDataSource.getRepository(Driver)
 			.createQueryBuilder('driver')
+			.leftJoinAndSelect('driver.location', 'location')
 			.orderBy(
 				`driver.${req.params.orderBy || 'name'}`,
 			)
@@ -66,7 +61,6 @@ routerDriver.get(
 			});
 	},
 );
-
 routerDriver.get(
 	'/getOne/:id',
 	async (req: Request, resp: Response) => {
@@ -91,14 +85,12 @@ routerDriver.get(
 			});
 	},
 );
-
 routerDriver.put(
 	'/:id',
 	async (req: Request, resp: Response) => {
 		const driverDao = await driverRepository
 			.findOne({
 				where: {
-
 					id: parseInt(
 						req.params.id,
 						10,
@@ -116,6 +108,41 @@ routerDriver.put(
 
 						resp.status(404)
 							.send('Not found!');
+					});
+			},
+			)
+			.catch(err => {
+				resp.status(500)
+					.send('Not found ');
+			});
+	},
+);
+routerDriver.patch(
+	'',
+	async (req: Request, resp: Response) => {
+		const driverDao = await driverRepository
+			.findOne({
+				where: {
+					id: parseInt(
+						req.body.id,
+						10,
+					),
+				},
+			})
+			.then(driver => {
+				driver = req.body;
+				void driverRepository.save(driver)
+					.then(driver => {
+						if (driver) {
+							return resp.status(200)
+								.send(driver);
+						}
+
+						resp.status(404)
+							.send('Not found!');
+					}).catch(err => {
+						resp.status(500)
+							.send('Not Complete Object');
 					});
 			},
 			)

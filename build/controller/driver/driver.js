@@ -87,6 +87,7 @@ routerDriver.get('/all/:orderBy', function (req, resp) { return __awaiter(void 0
         switch (_a.label) {
             case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(Driver_1.Driver)
                     .createQueryBuilder('driver')
+                    .leftJoinAndSelect('driver.location', 'location')
                     .orderBy("driver.".concat(req.params.orderBy || 'name'))
                     .getMany()
                     .then(function (drivers) {
@@ -150,6 +151,41 @@ routerDriver.put('/:id', function (req, resp) { return __awaiter(void 0, void 0,
                         }
                         resp.status(404)
                             .send('Not found!');
+                    });
+                })
+                    .catch(function (err) {
+                    resp.status(500)
+                        .send('Not found ');
+                })];
+            case 1:
+                driverDao = _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}); });
+routerDriver.patch('', function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
+    var driverDao;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, driverRepository
+                    .findOne({
+                    where: {
+                        id: parseInt(req.body.id, 10),
+                    },
+                })
+                    .then(function (driver) {
+                    driver = req.body;
+                    void driverRepository.save(driver)
+                        .then(function (driver) {
+                        if (driver) {
+                            return resp.status(200)
+                                .send(driver);
+                        }
+                        resp.status(404)
+                            .send('Not found!');
+                    }).catch(function (err) {
+                        resp.status(500)
+                            .send('Not Complete Object');
                     });
                 })
                     .catch(function (err) {
