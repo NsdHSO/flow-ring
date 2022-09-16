@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dd435ebb-b141-42d0-8fe9-a2f43e5b2d78" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/driver/driver.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/driver/driver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/driver/driver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/driver/driver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/data-source.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/data-source.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/data-source.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/data-source.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/driver/Driver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/driver/Driver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/driver/Location.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/driver/Location.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/user/Elien.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/user/Elien.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/driver/driver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controller/driver/driver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-source.ts" beforeDir="false" afterPath="$PROJECT_DIR$/data-source.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +68,7 @@
       <workItem from="1662953113685" duration="1685000" />
       <workItem from="1663311567678" duration="1546000" />
       <workItem from="1663313237275" duration="10000" />
+      <workItem from="1663361648312" duration="1268000" />
     </task>
     <servers />
   </component>

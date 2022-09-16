@@ -44,12 +44,18 @@ routerDriver.post(
 routerDriver.get(
 	'/all/:orderBy',
 	async (req: Request, resp: Response) => {
+		if (req.body.page === undefined || req.body.items === undefined) {
+			return resp.status(400).send('Bad Request');
+		}
+
 		await AppDataSource.getRepository(Driver)
 			.createQueryBuilder('driver')
 			.leftJoinAndSelect('driver.location', 'location')
 			.orderBy(
 				`driver.${req.params.orderBy || 'name'}`,
 			)
+			.take(req.body.items)
+			.skip((req.body.page - 1) * req.body.items)
 			.getMany()
 			.then(drivers => {
 				resp.status(200)
@@ -140,7 +146,8 @@ routerDriver.patch(
 
 						resp.status(404)
 							.send('Not found!');
-					}).catch(err => {
+					})
+					.catch(err => {
 						resp.status(500)
 							.send('Not Complete Object');
 					});
