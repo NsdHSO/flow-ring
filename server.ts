@@ -32,7 +32,7 @@ app.get('/app', authenticationToken, async (req: Request, res: Response) => {
 	console.log(req.body.message);
 });
 app.get('', (reqest: Request, response: Response) => {
-    response.status(200).send("Please feel free to contribute here https://github.com/Vorkurt/flow-ring")
+	response.status(200).send('Please feel free to contribute here https://github.com/Vorkurt/flow-ring');
 });
 app.listen(port, () => {
 	console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

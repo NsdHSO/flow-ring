@@ -42,20 +42,22 @@ routerDriver.post(
 	},
 );
 routerDriver.get(
-	'/all/:orderBy',
+	'/all/:orderBy/:items/:page',
 	async (req: Request, resp: Response) => {
-		if (req.body.page === undefined || req.body.items === undefined) {
+		if (req.params.page === undefined || req.params.items === undefined) {
 			return resp.status(400).send('Bad Request');
 		}
 
+		const item = parseInt(req.params.items, 10);
+		const skip = parseInt(req.params.page, 10);
 		await AppDataSource.getRepository(Driver)
 			.createQueryBuilder('driver')
 			.leftJoinAndSelect('driver.location', 'location')
 			.orderBy(
 				`driver.${req.params.orderBy || 'name'}`,
 			)
-			.take(req.body.items)
-			.skip((req.body.page - 1) * req.body.items)
+			.take(item)
+			.skip(skip)
 			.getMany()
 			.then(drivers => {
 				resp.status(200)
