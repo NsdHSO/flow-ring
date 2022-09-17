@@ -48,11 +48,11 @@ app.use(express.json());
 dotenv === null || dotenv === void 0 ? void 0 : dotenv.config({ path: './.env' });
 data_source_1.AppDataSource.initialize().then(function (resp) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        console.log("Here you can setup and run express / fastify / any other framework.");
+        console.log('Here you can setup and run express / fastify / any other framework.');
         return [2 /*return*/];
     });
 }); }).catch(function (err) {
-    console.error("Error during Data Source initialization:", err);
+    console.error('Error during Data Source initialization:', err);
 });
 app.use(cors());
 app.use(function (req, resp, next) {
@@ -67,6 +67,9 @@ app.get('/app', login_1.authenticationToken, function (req, res) { return __awai
         return [2 /*return*/];
     });
 }); });
+app.get('', function (reqest, response) {
+    response.status(200).send('Please feel free to contribute here https://github.com/Vorkurt/flow-ring');
+});
 app.listen(port, function () {
     console.log("\u26A1\uFE0F[server]: Server is running at http://localhost:".concat(port));
 });

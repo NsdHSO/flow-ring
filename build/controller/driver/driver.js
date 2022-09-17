@@ -82,22 +82,31 @@ routerDriver.post('/', function (req, resp) { return __awaiter(void 0, void 0, v
         }
     });
 }); });
-routerDriver.get('/all/:orderBy', function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
+routerDriver.get('/:orderBy/:items/:page', function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
+    var item, skip;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(Driver_1.Driver)
-                    .createQueryBuilder('driver')
-                    .leftJoinAndSelect('driver.location', 'location')
-                    .orderBy("driver.".concat(req.params.orderBy || 'name'))
-                    .getMany()
-                    .then(function (drivers) {
-                    resp.status(200)
-                        .send(drivers);
-                })
-                    .catch(function (err) {
-                    resp.status(500)
-                        .send(err);
-                })];
+            case 0:
+                if (req.params.page === undefined || req.params.items === undefined) {
+                    return [2 /*return*/, resp.status(400).send('Bad Request')];
+                }
+                item = parseInt(req.params.items, 10);
+                skip = parseInt(req.params.page, 10);
+                return [4 /*yield*/, data_source_1.AppDataSource.getRepository(Driver_1.Driver)
+                        .createQueryBuilder('driver')
+                        .leftJoinAndSelect('driver.location', 'location')
+                        .orderBy("driver.".concat(req.params.orderBy || 'name'))
+                        .take(item)
+                        .skip(skip)
+                        .getMany()
+                        .then(function (drivers) {
+                        resp.status(200)
+                            .send(drivers);
+                    })
+                        .catch(function (err) {
+                        resp.status(500)
+                            .send(err);
+                    })];
             case 1:
                 _a.sent();
                 return [2 /*return*/];
@@ -183,7 +192,8 @@ routerDriver.patch('', function (req, resp) { return __awaiter(void 0, void 0, v
                         }
                         resp.status(404)
                             .send('Not found!');
-                    }).catch(function (err) {
+                    })
+                        .catch(function (err) {
                         resp.status(500)
                             .send('Not Complete Object');
                     });
