@@ -42,7 +42,7 @@ routerDriver.post(
 	},
 );
 routerDriver.get(
-	'/all/:orderBy/:items/:page',
+	'/:orderBy/:items/:page',
 	async (req: Request, resp: Response) => {
 		if (req.params.page === undefined || req.params.items === undefined) {
 			return resp.status(400).send('Bad Request');
