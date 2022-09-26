@@ -20,23 +20,23 @@ var Driver = /** @class */ (function () {
         __metadata("design:type", Number)
     ], Driver.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.Column)("text"),
+        (0, typeorm_1.Column)('text'),
         __metadata("design:type", String)
     ], Driver.prototype, "name", void 0);
     __decorate([
-        (0, typeorm_1.Column)("text"),
+        (0, typeorm_1.Column)('text'),
         __metadata("design:type", String)
     ], Driver.prototype, "description", void 0);
     __decorate([
-        (0, typeorm_1.Column)("boolean"),
+        (0, typeorm_1.Column)('boolean'),
         __metadata("design:type", Boolean)
     ], Driver.prototype, "license", void 0);
     __decorate([
-        (0, typeorm_1.Column)("text"),
+        (0, typeorm_1.Column)('text'),
         __metadata("design:type", String)
     ], Driver.prototype, "email", void 0);
     __decorate([
-        (0, typeorm_1.Column)("text"),
+        (0, typeorm_1.Column)('text'),
         __metadata("design:type", String)
     ], Driver.prototype, "dataOfBirth", void 0);
     __decorate([

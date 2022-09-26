@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd435ebb-b141-42d0-8fe9-a2f43e5b2d78" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/entity/cow/baseCow.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entity/cow/meatCow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/controller/driver/driver.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/driver/driver.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/driver/driver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controller/driver/driver.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-source.ts" beforeDir="false" afterPath="$PROJECT_DIR$/data-source.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/driver/Driver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/driver/Driver.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/login/login.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +29,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2EUwUbgAKeJyy1ST3FpDYIOHk4Q" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -70,7 +84,11 @@
       <workItem from="1663313237275" duration="10000" />
       <workItem from="1663361648312" duration="2209000" />
       <workItem from="1663364524156" duration="1400000" />
-      <workItem from="1663393952500" duration="1069000" />
+      <workItem from="1663393952500" duration="2968000" />
+      <workItem from="1664133613848" duration="1552000" />
+      <workItem from="1664135192600" duration="92000" />
+      <workItem from="1664135295903" duration="26000" />
+      <workItem from="1664135335560" duration="3672000" />
     </task>
     <servers />
   </component>
@@ -87,6 +105,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/controller/driver/driver.ts</url>
+          <line>41</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

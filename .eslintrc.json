@@ -1,24 +1,57 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": "xo",
-    "overrides": [
-        {
-            "extends": [
-                "xo-typescript"
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "xo",
+  "overrides": [
+    {
+      "extends": [
+        "xo-typescript"
+      ],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {
+        "@typescript-eslint/indent": [
+          "error",
+          2
+        ],
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "sort-imports": [
+          "error",
+          {
+            "memberSyntaxSortOrder": [
+              "all",
+              "single",
+              "multiple",
+              "none"
             ],
-            "files": [
-                "*.ts",
-                "*.tsx"
-            ]
-        }
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "rules": {
+            "ignoreDeclarationSort": false
+
+          }
+        ],
+        "no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ]
+      }
     }
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "new-cap": "off",
+    "no-tabs": "off"
+  }
 }

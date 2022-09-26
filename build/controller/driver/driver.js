@@ -88,7 +88,8 @@ routerDriver.get('/:orderBy/:items/:page', function (req, resp) { return __await
         switch (_a.label) {
             case 0:
                 if (req.params.page === undefined || req.params.items === undefined) {
-                    return [2 /*return*/, resp.status(400).send('Bad Request')];
+                    return [2 /*return*/, resp.status(400)
+                            .send('Bad Request')];
                 }
                 item = parseInt(req.params.items, 10);
                 skip = parseInt(req.params.page, 10);
@@ -119,7 +120,7 @@ routerDriver.get('/getOne/:id', function (req, resp) { return __awaiter(void 0, 
             case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(Driver_1.Driver)
                     .findOne({
                     where: {
-                        id: parseInt(req.params.id),
+                        id: parseInt(req.params.id, 10),
                     },
                 })
                     .then(function (driver) {
