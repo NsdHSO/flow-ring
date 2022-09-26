@@ -36,46 +36,45 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cors = require("cors");
-var dotenv = require("dotenv");
-var express = require("express");
-var cow_1 = require("./controller/cow/cow");
-var driver_1 = require("./controller/driver/driver");
-var data_source_1 = require("./data-source");
-var login_1 = require("./login/login");
-var app = express();
-var port = process.env.PORT || 3000;
-app.use(express.json());
-dotenv === null || dotenv === void 0 ? void 0 : dotenv.config({ path: './.env' });
-data_source_1.AppDataSource.initialize()
-    .then(function (resp) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        console.log('Here you can setup and run express / fastify / any other framework.');
-        return [2 /*return*/];
-    });
-}); })
-    .catch(function (err) {
-    console.error('Error during Data Source initialization:', err);
-});
-app.use(cors());
-app.use(function (req, resp, next) {
-    console.log(req.body);
-    next();
-});
-app.use(login_1.default);
-app.use('/driver', driver_1.default);
-app.use('/cow/meat', cow_1.default);
-app.get('/app', login_1.authenticationToken, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        console.log(req.body.message);
-        return [2 /*return*/];
-    });
-}); });
-app.get('', function (reqest, response) {
-    response.status(200)
-        .send('Please feel free to contribute here https://github.com/Vorkurt/flow-ring');
-});
-app.listen(port, function () {
-    console.log("\u26A1\uFE0F[server]: Server is running at http://localhost:".concat(port));
-});
-//# sourceMappingURL=server.js.map
+exports.CowMeatProvider = void 0;
+var data_source_1 = require("../../data-source");
+var meatCow_1 = require("../../entity/cow/meatCow");
+var CowMeatProvider = /** @class */ (function () {
+    function CowMeatProvider() {
+        this.cowMeatRepository = data_source_1.AppDataSource.getRepository(meatCow_1.MeatCow);
+    }
+    CowMeatProvider.prototype.getAllCows = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.cowMeatRepository.createQueryBuilder('cow')
+                        .getMany()];
+            });
+        });
+    };
+    CowMeatProvider.prototype.addedCow = function (req) {
+        var _a, _b, _c, _d, _e;
+        return __awaiter(this, void 0, void 0, function () {
+            var cow;
+            return __generator(this, function (_f) {
+                cow = new meatCow_1.MeatCow();
+                cow.howMuchEats = (_a = req.body.howMuchEats) !== null && _a !== void 0 ? _a : 0;
+                cow.numberOfLiveCattle = (_b = req.body.numberOfLiveCattle) !== null && _b !== void 0 ? _b : 0;
+                cow.age = (_c = req.body.age) !== null && _c !== void 0 ? _c : 0;
+                cow.birth = (_d = req.body.birth) !== null && _d !== void 0 ? _d : 0;
+                this.cowMeatRepository.createQueryBuilder('cow')
+                    .where({ number: req.body.number })
+                    .getOneOrFail()
+                    .then(function (resp) {
+                    if (resp !== undefined) {
+                        throw new Error('Duplicate ');
+                    }
+                });
+                cow.kg = (_e = req.body.kg) !== null && _e !== void 0 ? _e : 0;
+                return [2 /*return*/, this.cowMeatRepository.save(cow)];
+            });
+        });
+    };
+    return CowMeatProvider;
+}());
+exports.CowMeatProvider = CowMeatProvider;
+//# sourceMappingURL=cow.service.js.map
