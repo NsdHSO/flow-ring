@@ -64,26 +64,62 @@ var CowMeatProvider = /** @class */ (function () {
                         cow.age = (_c = req.body.age) !== null && _c !== void 0 ? _c : 0;
                         cow.birth = (_d = req.body.birth) !== null && _d !== void 0 ? _d : 0;
                         return [4 /*yield*/, this.cowMeatRepository.createQueryBuilder('cow')
-                                .where("cow.number = :number", { number: req.body.number })
+                                .where('cow.number = :number', { number: req.body.number })
                                 .getOne()
                                 .then(function (resp) {
                                 if (resp !== null) {
                                     console.log(resp);
-                                    response.status(400).send('Duplicate ');
-                                    throw new Error("Duplicate");
+                                    response.status(400)
+                                        .send('Duplicate ');
+                                    throw new Error('Duplicate');
                                 }
                                 else {
-                                    if (req.body.number !== undefined)
+                                    if (req.body.number !== undefined) {
                                         cow.number = req.body.number;
-                                    else
-                                        response.status(400).send('Not number of cow');
-                                    throw new Error("Not number ");
+                                    }
+                                    else {
+                                        response.status(400)
+                                            .send('Not number of cow');
+                                    }
+                                    throw new Error('Not number ');
                                 }
                             })];
                     case 1:
                         _f.sent();
                         cow.kg = (_e = req.body.kg) !== null && _e !== void 0 ? _e : 0;
                         return [2 /*return*/, this.cowMeatRepository.save(cow)];
+                }
+            });
+        });
+    };
+    CowMeatProvider.prototype.modifiedOneCow = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.cowMeatRepository.findOne({
+                            where: {
+                                id: parseInt(request.params.id, 10),
+                            },
+                        })
+                            .then(function (cow) {
+                            cow[Object.keys(request.body)[0].split(':')[0]] = Object.values(request.body)[0];
+                            void _this.cowMeatRepository.save(cow)
+                                .then(function (cow) {
+                                if (cow) {
+                                    return response.status(200)
+                                        .send(cow);
+                                }
+                                response.status(404)
+                                    .send('Not found!');
+                            });
+                        }).catch(function (err) {
+                            response.status(500)
+                                .send('Not found ');
+                        })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
             });
         });

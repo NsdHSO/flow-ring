@@ -27,4 +27,7 @@ cowRouter.post('/', async (req: Request, resp: Response) => {
     },
     );
 });
+cowRouter.put('/:id', async (req: Request, resp: Response) => {
+  await cowMeatProvider.modifiedOneCow(req, resp);
+});
 export default cowRouter;
