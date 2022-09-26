@@ -61,7 +61,7 @@ cowRouter.get('/', function (req, resp) { return __awaiter(void 0, void 0, void 
 cowRouter.post('/', function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, cowMeatProvider.addedCow(req)
+            case 0: return [4 /*yield*/, cowMeatProvider.addedCow(req, resp)
                     .then(function (cows) { return resp.status(200)
                     .send(cows); })
                     .catch(function (err) {

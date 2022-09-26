@@ -51,26 +51,40 @@ var CowMeatProvider = /** @class */ (function () {
             });
         });
     };
-    CowMeatProvider.prototype.addedCow = function (req) {
+    CowMeatProvider.prototype.addedCow = function (req, response) {
         var _a, _b, _c, _d, _e;
         return __awaiter(this, void 0, void 0, function () {
             var cow;
             return __generator(this, function (_f) {
-                cow = new meatCow_1.MeatCow();
-                cow.howMuchEats = (_a = req.body.howMuchEats) !== null && _a !== void 0 ? _a : 0;
-                cow.numberOfLiveCattle = (_b = req.body.numberOfLiveCattle) !== null && _b !== void 0 ? _b : 0;
-                cow.age = (_c = req.body.age) !== null && _c !== void 0 ? _c : 0;
-                cow.birth = (_d = req.body.birth) !== null && _d !== void 0 ? _d : 0;
-                this.cowMeatRepository.createQueryBuilder('cow')
-                    .where({ number: req.body.number })
-                    .getOneOrFail()
-                    .then(function (resp) {
-                    if (resp !== undefined) {
-                        throw new Error('Duplicate ');
-                    }
-                });
-                cow.kg = (_e = req.body.kg) !== null && _e !== void 0 ? _e : 0;
-                return [2 /*return*/, this.cowMeatRepository.save(cow)];
+                switch (_f.label) {
+                    case 0:
+                        cow = new meatCow_1.MeatCow();
+                        cow.howMuchEats = (_a = req.body.howMuchEats) !== null && _a !== void 0 ? _a : 0;
+                        cow.numberOfLiveCattle = (_b = req.body.numberOfLiveCattle) !== null && _b !== void 0 ? _b : 0;
+                        cow.age = (_c = req.body.age) !== null && _c !== void 0 ? _c : 0;
+                        cow.birth = (_d = req.body.birth) !== null && _d !== void 0 ? _d : 0;
+                        return [4 /*yield*/, this.cowMeatRepository.createQueryBuilder('cow')
+                                .where("cow.number = :number", { number: req.body.number })
+                                .getOne()
+                                .then(function (resp) {
+                                if (resp !== null) {
+                                    console.log(resp);
+                                    response.status(400).send('Duplicate ');
+                                    throw new Error("Duplicate");
+                                }
+                                else {
+                                    if (req.body.number !== undefined)
+                                        cow.number = req.body.number;
+                                    else
+                                        response.status(400).send('Not number of cow');
+                                    throw new Error("Not number ");
+                                }
+                            })];
+                    case 1:
+                        _f.sent();
+                        cow.kg = (_e = req.body.kg) !== null && _e !== void 0 ? _e : 0;
+                        return [2 /*return*/, this.cowMeatRepository.save(cow)];
+                }
             });
         });
     };

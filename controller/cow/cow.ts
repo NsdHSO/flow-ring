@@ -18,7 +18,7 @@ cowRouter.get(
   },
 );
 cowRouter.post('/', async (req: Request, resp: Response) => {
-  await cowMeatProvider.addedCow(req)
+  await cowMeatProvider.addedCow(req, resp)
     .then(cows => resp.status(200)
       .send(cows))
     .catch(err => {
