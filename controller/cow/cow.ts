@@ -9,7 +9,7 @@ cowRouter.use(authenticationToken);
 cowRouter.get(
   '/',
   async (req: Request, resp: Response) => {
-    await cowMeatProvider.getAllCows(req, resp)
+    await cowMeatProvider.getAllCows()
       .then(cows => resp.status(200)
         .send(cows))
       .catch(err =>
@@ -17,4 +17,12 @@ cowRouter.get(
           .send(err));
   },
 );
+cowRouter.post('/', async (req: Request, resp: Response) => {
+  await cowMeatProvider.addedCow(req)
+    .then(cows => resp.status(200)
+      .send(cows))
+    .catch(err =>
+      resp.status(500)
+        .send(err));
+});
 export default cowRouter;
