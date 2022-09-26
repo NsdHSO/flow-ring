@@ -1,7 +1,6 @@
 import type {Request, Response} from 'express';
 import * as express from 'express';
 import {AppDataSource} from '../../data-source';
-import {BaseCows} from '../../entity/cow/baseCow';
 import {Driver} from '../../entity/driver/Driver';
 import {Location} from '../../entity/driver/Location';
 import {authenticationToken} from '../../login/login';
