@@ -67,10 +67,23 @@ export class CowMeatProvider {
             response.status(404)
               .send('Not found!');
           });
-      }).catch(err => {
+      })
+      .catch(err => {
         response.status(500)
           .send('Not found ');
       });
+  }
+
+  public async deleteCow(request: Request, response: Response) {
+    await this.cowMeatRepository.createQueryBuilder()
+      .delete()
+      .from(MeatCow)
+      .where('id = :id', {id: request.params.id})
+      .execute()
+      .then(resp => response.status(200)
+        .send(resp))
+      .catch(err => response.status(500)
+        .send(err));
   }
 }
 

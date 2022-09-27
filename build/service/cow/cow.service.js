@@ -113,10 +113,31 @@ var CowMeatProvider = /** @class */ (function () {
                                 response.status(404)
                                     .send('Not found!');
                             });
-                        }).catch(function (err) {
+                        })
+                            .catch(function (err) {
                             response.status(500)
                                 .send('Not found ');
                         })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    CowMeatProvider.prototype.deleteCow = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.cowMeatRepository.createQueryBuilder()
+                            .delete()
+                            .from(meatCow_1.MeatCow)
+                            .where('id = :id', { id: request.params.id })
+                            .execute()
+                            .then(function (resp) { return response.status(200)
+                            .send(resp); })
+                            .catch(function (err) { return response.status(500)
+                            .send(err); })];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];

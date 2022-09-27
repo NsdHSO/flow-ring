@@ -30,4 +30,8 @@ cowRouter.post('/', async (req: Request, resp: Response) => {
 cowRouter.put('/:id', async (req: Request, resp: Response) => {
   await cowMeatProvider.modifiedOneCow(req, resp);
 });
+
+cowRouter.delete('/:id', async (request: Request, response: Response) => {
+  await cowMeatProvider.deleteCow(request, response);
+});
 export default cowRouter;
