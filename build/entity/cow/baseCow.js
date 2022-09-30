@@ -33,7 +33,27 @@ var BaseCows = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", Number)
+    ], BaseCows.prototype, "howMuchEats", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", Number)
+    ], BaseCows.prototype, "numberOfLiveCattle", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", Number)
     ], BaseCows.prototype, "age", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], BaseCows.prototype, "state", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", Number)
+    ], BaseCows.prototype, "group", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], BaseCows.prototype, "gynecologicalStatus", void 0);
     return BaseCows;
 }());
 exports.BaseCows = BaseCows;

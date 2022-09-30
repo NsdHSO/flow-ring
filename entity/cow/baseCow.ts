@@ -1,11 +1,11 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, PrimaryGeneratedColumn} from 'typeorm';
 
 export class BaseCows {
   @PrimaryGeneratedColumn()
     id: number;
 
   @Column()
-    number: number;
+    numberFromEar: number;
 
   @Column()
     kg: number;
@@ -14,5 +14,20 @@ export class BaseCows {
     birth: string;
 
   @Column()
+    howMuchEats: number;
+
+  @Column()
+    numberOfLiveCattle: number;
+
+  @Column()
     age: number;
+
+  @Column()
+    state: string;
+
+  @Column()
+    group: number;
+
+  @Column()
+    gynecologicalStatus: string;
 }

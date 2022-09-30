@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import type {Request, Response} from 'express';
 import * as express from 'express';
 import cowRouter from './controller/cow/cow';
+import cowMilkRouter from './controller/cow/milkCow';
 import routerDriver from './controller/driver/driver';
 import {AppDataSource} from './data-source';
 import router, {authenticationToken} from './login/login';
@@ -26,6 +27,7 @@ app.use((req, resp, next) => {
 app.use(router);
 app.use('/driver', routerDriver);
 app.use('/cow/meat', cowRouter);
+app.use('/cow/milk', cowMilkRouter);
 app.get('/app', authenticationToken, async (req : Request, res : Response) => {
   console.log(req.body.message);
 });

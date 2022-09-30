@@ -1,9 +1,5 @@
 import * as dotenv from 'dotenv';
 import {DataSource} from 'typeorm';
-import {MeatCow} from './entity/cow/meatCow';
-import {Driver} from './entity/driver/Driver';
-import {Location} from './entity/driver/Location';
-import {Elien} from './entity/user/Elien';
 
 dotenv?.config({path: './.env'});
 export const AppDataSource = new DataSource({
@@ -16,7 +12,9 @@ export const AppDataSource = new DataSource({
   synchronize: true,
   logging: false,
   entities: [
-    Driver, Elien, Location, MeatCow,
+    'entity/*/*/*.ts',
+    'entity/*/*/*/*.ts',
+    'entity/*/*.ts',
   ],
   migrations: [],
   subscribers: [],

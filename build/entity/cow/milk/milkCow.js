@@ -20,19 +20,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MeatCow = void 0;
+exports.MilkCow = void 0;
 var typeorm_1 = require("typeorm");
-var baseCow_1 = require("./baseCow");
-var MeatCow = /** @class */ (function (_super) {
-    __extends(MeatCow, _super);
-    function MeatCow() {
+var baseCow_1 = require("../baseCow");
+var numberInsemination_1 = require("./numberInsemination");
+var MilkCow = /** @class */ (function (_super) {
+    __extends(MilkCow, _super);
+    function MilkCow() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    MeatCow = __decorate([
+    __decorate([
+        (0, typeorm_1.OneToOne)(function () { return numberInsemination_1.NumberInsemination; }, function (numberIn) { return numberIn.milkCowNumber; }, { cascade: true }),
+        __metadata("design:type", numberInsemination_1.NumberInsemination)
+    ], MilkCow.prototype, "numberIn", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", Number)
+    ], MilkCow.prototype, "ageMonth", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", Number)
+    ], MilkCow.prototype, "averageOfMilk", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", Number)
+    ], MilkCow.prototype, "cowInHeat", void 0);
+    MilkCow = __decorate([
         (0, typeorm_1.Entity)()
-    ], MeatCow);
-    return MeatCow;
+    ], MilkCow);
+    return MilkCow;
 }(baseCow_1.BaseCows));
-exports.MeatCow = MeatCow;
-//# sourceMappingURL=meatCow.js.map
+exports.MilkCow = MilkCow;
+//# sourceMappingURL=milkCow.js.map
