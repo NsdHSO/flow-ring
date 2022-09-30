@@ -34,7 +34,7 @@ var MilkCow = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return numberInsemination_1.NumberInsemination; }, function (numberIn) { return numberIn.milkCowNumber; }, { cascade: true }),
+        (0, typeorm_1.OneToOne)(function () { return numberInsemination_1.NumberInsemination; }, function (numberIn) { return numberIn.milkCowNumber; }, { cascade: true, onDelete: 'CASCADE' }),
         __metadata("design:type", numberInsemination_1.NumberInsemination)
     ], MilkCow.prototype, "numberIn", void 0);
     __decorate([

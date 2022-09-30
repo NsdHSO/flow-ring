@@ -84,36 +84,60 @@ var CowMilkProvider = /** @class */ (function () {
                         cow.numberIn = new numberInsemination_1.NumberInsemination();
                         cow.numberIn.lact = req.body.numberIn.lact;
                         cow.numberIn.insemination = req.body.numberIn.insemination;
-                        return [4 /*yield*/, this.cowMilkRepository.createQueryBuilder('cow')
-                                .where('cow.number = :number', { number: req.body.number })
-                                .getOne()
-                                .then(function (resp) {
-                                if (resp !== null) {
-                                    response.status(400)
-                                        .send('Duplicate ');
-                                    throw new Error('Duplicate');
-                                }
-                                else {
-                                    if (req.body.number !== undefined) {
-                                        cow.number = req.body.number;
-                                    }
-                                    else {
-                                        response.status(400)
-                                            .send('Not number of cow');
-                                        throw new Error('Not number of cow');
-                                    }
-                                    throw new Error('Not number ');
-                                }
-                            })];
-                    case 1:
-                        _a.sent();
+                        cow.numberFromEar = req.body.numberFromEar;
                         return [4 /*yield*/, this.cowMilkRepository.save(cow)
                                 .then(function (re) { return response.status(200)
                                 .send(re); })];
-                    case 2:
+                    case 1:
                         _a.sent();
                         return [2 /*return*/];
                 }
+            });
+        });
+    };
+    CowMilkProvider.prototype.modifiedOneCow = function (req, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.cowMilkRepository.findOne({
+                            where: {
+                                id: parseInt(req.params.id, 10),
+                            },
+                        })
+                            .then(function (cow) {
+                            cow[Object.keys(req.body)[0].split(':')[0]] = Object.values(req.body)[0];
+                            void _this.cowMilkRepository.save(cow)
+                                .then(function (cow) {
+                                if (cow) {
+                                    return response.status(200)
+                                        .send(cow);
+                                }
+                                response.status(404)
+                                    .send('Not found!');
+                            });
+                        })
+                            .catch(function (err) {
+                            response.status(500)
+                                .send('Not found ');
+                        })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    CowMilkProvider.prototype.deleteCow = function (req, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.cowMilkRepository.delete({ id: parseInt(req.params.id, 10) })
+                        .then(function (cows) { return response.status(200)
+                        .send(cows); })
+                        .catch(function (err) {
+                        response.status(500)
+                            .send(err);
+                    })];
             });
         });
     };

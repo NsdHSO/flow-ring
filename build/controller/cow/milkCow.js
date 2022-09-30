@@ -61,7 +61,13 @@ cowMilkRouter.get('/:items/:page', function (req, response) { return __awaiter(v
 cowMilkRouter.post('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, cowMilkProvider.insertNewCow(req, response)];
+            case 0: return [4 /*yield*/, cowMilkProvider.insertNewCow(req, response)
+                    .then(function (cows) { return response.status(200)
+                    .send(cows); })
+                    .catch(function (err) {
+                    response.status(500)
+                        .send(err);
+                })];
             case 1:
                 _a.sent();
                 return [2 /*return*/];
@@ -70,12 +76,22 @@ cowMilkRouter.post('/', function (req, response) { return __awaiter(void 0, void
 }); });
 cowMilkRouter.put('/:id', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, cowMilkProvider.modifiedOneCow(req, response)];
+            case 1:
+                _a.sent();
+                return [2 /*return*/];
+        }
     });
 }); });
 cowMilkRouter.delete('/:id', function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, cowMilkProvider.deleteCow(request, response)];
+            case 1:
+                _a.sent();
+                return [2 /*return*/];
+        }
     });
 }); });
 exports.default = cowMilkRouter;

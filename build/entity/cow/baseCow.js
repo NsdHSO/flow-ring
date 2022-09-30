@@ -21,7 +21,7 @@ var BaseCows = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", Number)
-    ], BaseCows.prototype, "number", void 0);
+    ], BaseCows.prototype, "numberFromEar", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", Number)

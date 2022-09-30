@@ -28,7 +28,7 @@ var NumberInsemination = /** @class */ (function () {
         __metadata("design:type", Number)
     ], NumberInsemination.prototype, "insemination", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return milkCow_1.MilkCow; }, function (milkCow) { return milkCow.number; }),
+        (0, typeorm_1.OneToOne)(function () { return milkCow_1.MilkCow; }, function (milkCow) { return milkCow.numberIn; }, { onDelete: 'CASCADE' }),
         (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", Object)
     ], NumberInsemination.prototype, "milkCowNumber", void 0);

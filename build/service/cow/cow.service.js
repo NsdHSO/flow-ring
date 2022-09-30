@@ -64,18 +64,17 @@ var CowMeatProvider = /** @class */ (function () {
                         cow.age = (_c = req.body.age) !== null && _c !== void 0 ? _c : 0;
                         cow.birth = (_d = req.body.birth) !== null && _d !== void 0 ? _d : 0;
                         return [4 /*yield*/, this.cowMeatRepository.createQueryBuilder('cow')
-                                .where('cow.number = :number', { number: req.body.number })
+                                .where('cow.numberFromEar = :numberFromEar', { numberFromEar: req.body.numberFromEar })
                                 .getOne()
                                 .then(function (resp) {
                                 if (resp !== null) {
-                                    console.log(resp);
                                     response.status(400)
                                         .send('Duplicate ');
                                     throw new Error('Duplicate');
                                 }
                                 else {
-                                    if (req.body.number !== undefined) {
-                                        cow.number = req.body.number;
+                                    if (req.body.numberFromEar !== undefined) {
+                                        cow.numberFromEar = req.body.numberFromEar;
                                     }
                                     else {
                                         response.status(400)
