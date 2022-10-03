@@ -3,12 +3,16 @@ import type {Repository} from 'typeorm';
 import {AppDataSource} from '../../data-source';
 import {MilkCow} from '../../entity/cow/milk/milkCow';
 import {NumberInsemination} from '../../entity/cow/milk/numberInsemination';
+import {ReportProvider} from './report.service';
 
 export class CowMilkProvider {
   cowMilkRepository: Repository<MilkCow>;
 
+  private readonly _reportProvider: ReportProvider;
+
   constructor() {
     this.cowMilkRepository = AppDataSource.getRepository(MilkCow);
+    this._reportProvider = new ReportProvider();
   }
 
   async getAllCows(req: Request, resp: Response) {
@@ -17,14 +21,19 @@ export class CowMilkProvider {
         .send('Bad Request');
     }
 
+    const allItems = await this.cowMilkRepository.count();
     const item = parseInt(req.params.items, 10);
     const skip = parseInt(req.params.page, 10);
-    console.log(item, skip);
-    return this.cowMilkRepository.createQueryBuilder('cow')
-      .leftJoinAndSelect('cow.numberIn', 'numberIn')
-      .take(item)
-      .skip(skip)
-      .getMany();
+    const report = await this._reportProvider.getAllReport();
+    return {
+      items: await this.cowMilkRepository.createQueryBuilder('cow')
+        .leftJoinAndSelect('cow.numberIn', 'numberIn')
+        .take(item)
+        .skip(skip)
+        .getMany(),
+      allItems,
+      report,
+    };
   }
 
   async insertNewCow(req: Request, response: Response) {

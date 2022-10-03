@@ -4,11 +4,12 @@ import type {Request, Response} from 'express';
 import * as express from 'express';
 import cowRouter from './controller/cow/cow';
 import cowMilkRouter from './controller/cow/milkCow';
+import reportingRouter from './controller/cow/report';
 import routerDriver from './controller/driver/driver';
 import {AppDataSource} from './data-source';
 import router, {authenticationToken} from './login/login';
 
-const app  = express();
+const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 dotenv?.config({path: './.env'});
@@ -28,10 +29,11 @@ app.use(router);
 app.use('/driver', routerDriver);
 app.use('/cow/meat', cowRouter);
 app.use('/cow/milk', cowMilkRouter);
-app.get('/app', authenticationToken, async (req : Request, res : Response) => {
+app.use('/cow/milk/reporting', reportingRouter);
+app.get('/app', authenticationToken, async (req: Request, res: Response) => {
   console.log(req.body.message);
 });
-app.get('', (reqest : Request, response : Response) => {
+app.get('', (reqest: Request, response: Response) => {
   response.status(200)
     .send('Please feel free to contribute here https://github.com/Vorkurt/flow-ring');
 });

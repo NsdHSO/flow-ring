@@ -46,20 +46,31 @@ var CowMilkProvider = /** @class */ (function () {
     }
     CowMilkProvider.prototype.getAllCows = function (req, resp) {
         return __awaiter(this, void 0, void 0, function () {
-            var item, skip;
-            return __generator(this, function (_a) {
-                if (req.params.page === undefined || req.params.items === undefined) {
-                    return [2 /*return*/, resp.status(400)
-                            .send('Bad Request')];
+            var allItems, item, skip;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (req.params.page === undefined || req.params.items === undefined) {
+                            return [2 /*return*/, resp.status(400)
+                                    .send('Bad Request')];
+                        }
+                        return [4 /*yield*/, this.cowMilkRepository.count()];
+                    case 1:
+                        allItems = _b.sent();
+                        item = parseInt(req.params.items, 10);
+                        skip = parseInt(req.params.page, 10);
+                        console.log(item, skip);
+                        _a = {};
+                        return [4 /*yield*/, this.cowMilkRepository.createQueryBuilder('cow')
+                                .leftJoinAndSelect('cow.numberIn', 'numberIn')
+                                .take(item)
+                                .skip(skip)
+                                .getMany()];
+                    case 2: return [2 /*return*/, (_a.items = _b.sent(),
+                            _a.allItems = allItems,
+                            _a)];
                 }
-                item = parseInt(req.params.items, 10);
-                skip = parseInt(req.params.page, 10);
-                console.log(item, skip);
-                return [2 /*return*/, this.cowMilkRepository.createQueryBuilder('cow')
-                        .leftJoinAndSelect('cow.numberIn', 'numberIn')
-                        .take(item)
-                        .skip(skip)
-                        .getMany()];
             });
         });
     };
