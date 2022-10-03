@@ -36,50 +36,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cors = require("cors");
-var dotenv = require("dotenv");
-var express = require("express");
-var cow_1 = require("./controller/cow/cow");
-var milkCow_1 = require("./controller/cow/milkCow");
-var report_1 = require("./controller/cow/report");
-var driver_1 = require("./controller/driver/driver");
-var data_source_1 = require("./data-source");
-var login_1 = require("./login/login");
-var app = express();
-var port = process.env.PORT || 3000;
-app.use(express.json());
-dotenv === null || dotenv === void 0 ? void 0 : dotenv.config({ path: './.env' });
-data_source_1.AppDataSource.initialize()
-    .then(function (resp) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        console.log('Here you can setup and run express / fastify / any other framework.');
-        return [2 /*return*/];
-    });
-}); })
-    .catch(function (err) {
-    console.error('Error during Data Source initialization:', err);
-});
-app.use(cors());
-app.use(function (req, resp, next) {
-    console.log(req.body);
-    next();
-});
-app.use(login_1.default);
-app.use('/driver', driver_1.default);
-app.use('/cow/meat', cow_1.default);
-app.use('/cow/milk', milkCow_1.default);
-app.use('/cow/milk/reporting', report_1.default);
-app.get('/app', login_1.authenticationToken, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        console.log(req.body.message);
-        return [2 /*return*/];
-    });
-}); });
-app.get('', function (reqest, response) {
-    response.status(200)
-        .send('Please feel free to contribute here https://github.com/Vorkurt/flow-ring');
-});
-app.listen(port, function () {
-    console.log("\u26A1\uFE0F[server]: Server is running at http://localhost:".concat(port));
-});
-//# sourceMappingURL=server.js.map
+exports.ReportProvider = void 0;
+var data_source_1 = require("../../data-source");
+var report_1 = require("../../entity/cow/report/report");
+var ReportProvider = /** @class */ (function () {
+    function ReportProvider() {
+        this.reportRepository = data_source_1.AppDataSource.getRepository(report_1.ReportState);
+    }
+    ReportProvider.prototype.getAllReport = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.reportRepository.createQueryBuilder()
+                        .getMany()];
+            });
+        });
+    };
+    ReportProvider.prototype.addedNewStateOfReport = function (req, response) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function () {
+            var newState;
+            return __generator(this, function (_c) {
+                newState = new report_1.ReportState();
+                newState.value = (_a = req.body.value) !== null && _a !== void 0 ? _a : '';
+                newState.viewValue = (_b = req.body.viewValue) !== null && _b !== void 0 ? _b : '';
+                return [2 /*return*/, this.reportRepository.save(newState)];
+            });
+        });
+    };
+    return ReportProvider;
+}());
+exports.ReportProvider = ReportProvider;
+//# sourceMappingURL=report.service.js.map
