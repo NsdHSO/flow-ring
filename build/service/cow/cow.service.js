@@ -56,38 +56,17 @@ var CowMeatProvider = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var cow;
             return __generator(this, function (_f) {
-                switch (_f.label) {
-                    case 0:
-                        cow = new meatCow_1.MeatCow();
-                        cow.howMuchEats = (_a = req.body.howMuchEats) !== null && _a !== void 0 ? _a : 0;
-                        cow.numberOfLiveCattle = (_b = req.body.numberOfLiveCattle) !== null && _b !== void 0 ? _b : 0;
-                        cow.age = (_c = req.body.age) !== null && _c !== void 0 ? _c : 0;
-                        cow.birth = (_d = req.body.birth) !== null && _d !== void 0 ? _d : 0;
-                        return [4 /*yield*/, this.cowMeatRepository.createQueryBuilder('cow')
-                                .where('cow.numberFromEar = :numberFromEar', { numberFromEar: req.body.numberFromEar })
-                                .getOne()
-                                .then(function (resp) {
-                                if (resp !== null) {
-                                    response.status(400)
-                                        .send('Duplicate ');
-                                    throw new Error('Duplicate');
-                                }
-                                else {
-                                    if (req.body.numberFromEar !== undefined) {
-                                        cow.numberFromEar = req.body.numberFromEar;
-                                    }
-                                    else {
-                                        response.status(400)
-                                            .send('Not number of cow');
-                                    }
-                                    throw new Error('Not number ');
-                                }
-                            })];
-                    case 1:
-                        _f.sent();
-                        cow.kg = (_e = req.body.kg) !== null && _e !== void 0 ? _e : 0;
-                        return [2 /*return*/, this.cowMeatRepository.save(cow)];
-                }
+                cow = new meatCow_1.MeatCow();
+                cow.numberFromEar = req.body.numberFromEar;
+                cow.kg = (_a = req.body.kg) !== null && _a !== void 0 ? _a : 0;
+                cow.birth = (_b = req.body.birth) !== null && _b !== void 0 ? _b : 0;
+                cow.howMuchEats = (_c = req.body.howMuchEats) !== null && _c !== void 0 ? _c : 0;
+                cow.numberOfLiveCattle = (_d = req.body.numberOfLiveCattle) !== null && _d !== void 0 ? _d : 0;
+                cow.age = (_e = req.body.age) !== null && _e !== void 0 ? _e : 0;
+                cow.state = req.body.state;
+                cow.group = req.body.group;
+                cow.gynecologicalStatus = req.body.gynecologicalStatus;
+                return [2 /*return*/, this.cowMeatRepository.save(cow)];
             });
         });
     };
