@@ -17,34 +17,15 @@ export class CowMeatProvider {
 
   async addedCow(req: Request, response: Response) {
     const cow = new MeatCow();
+    cow.numberFromEar = req.body.numberFromEar;
+    cow.kg = req.body.kg ?? 0;
+    cow.birth = req.body.birth ?? 0;
     cow.howMuchEats = req.body.howMuchEats ?? 0;
     cow.numberOfLiveCattle = req.body.numberOfLiveCattle ?? 0;
     cow.age = req.body.age ?? 0;
-    cow.birth = req.body.birth ?? 0;
-    await this.cowMeatRepository.createQueryBuilder('cow')
-      .where(
-        'cow.numberFromEar = :numberFromEar',
-        {numberFromEar: req.body.numberFromEar},
-      )
-      .getOne()
-      .then(resp => {
-        if (resp !== null) {
-          response.status(400)
-            .send('Duplicate ');
-          throw new Error('Duplicate');
-        } else {
-          if (req.body.numberFromEar !== undefined) {
-            cow.numberFromEar = req.body.numberFromEar;
-          } else {
-            response.status(400)
-              .send('Not number of cow');
-          }
-
-          throw new Error('Not number ');
-          
-        }
-      });
-    cow.kg = req.body.kg ?? 0;
+    cow.state = req.body.state;
+    cow.group = req.body.group;
+    cow.gynecologicalStatus = req.body.gynecologicalStatus;
     return this.cowMeatRepository.save(cow);
   }
 

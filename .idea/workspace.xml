@@ -5,29 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd435ebb-b141-42d0-8fe9-a2f43e5b2d78" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/controller/cow/milkCow.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entity/cow/milk/milkCow.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entity/cow/milk/numberInsemination.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/cow/cow-milk.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vorkrut.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vorkrut.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/cow/downloadCsv.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/data-source.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/data-source.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/data-source.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/data-source.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/cow/baseCow.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/cow/baseCow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/cow/baseCow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/cow/baseCow.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/cow/meatCow.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/cow/meatCow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/cow/meatCow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/cow/meatCow.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/driver/Driver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/driver/Driver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/driver/Location.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/driver/Location.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/user/Elien.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/user/Elien.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/server.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/server.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/service/cow/cow.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/cow/cow.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-source.ts" beforeDir="false" afterPath="$PROJECT_DIR$/data-source.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/cow/baseCow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/cow/baseCow.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/cow/meatCow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/cow/meatCow.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/cow/milkCow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controller/cow/milkCow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/cow/cow-milk.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/service/cow/cow-milk.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/cow/cow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/service/cow/cow.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,24 +36,24 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/davidnechiforel/Documents/work/nodejs/flow-ring",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "ts.external.directory.path": "/Users/davidnechiforel/Documents/work/nodejs/flow-ring/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/davidnechiforel/Documents/work/nodejs/flow-ring&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/davidnechiforel/Documents/work/nodejs/flow-ring/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Node.js.debug">
     <configuration name="debug" type="NodeJSConfigurationType" path-to-js-file="build/server.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
@@ -110,7 +93,9 @@
       <workItem from="1664187825024" duration="3081000" />
       <workItem from="1664287395918" duration="1340000" />
       <workItem from="1664307924882" duration="506000" />
-      <workItem from="1664482219973" duration="32400000" />
+      <workItem from="1664482219973" duration="33537000" />
+      <workItem from="1664624840467" duration="3110000" />
+      <workItem from="1664750983691" duration="5497000" />
     </task>
     <servers />
   </component>

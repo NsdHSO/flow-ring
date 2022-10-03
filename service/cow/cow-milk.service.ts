@@ -4,6 +4,9 @@ import {AppDataSource} from '../../data-source';
 import {MilkCow} from '../../entity/cow/milk/milkCow';
 import {NumberInsemination} from '../../entity/cow/milk/numberInsemination';
 
+const {Parser} = require('json2csv');
+const converter = require('json-2-csv');
+
 export class CowMilkProvider {
   cowMilkRepository: Repository<MilkCow>;
 
@@ -83,5 +86,18 @@ export class CowMilkProvider {
           .send(err);
       },
       );
+  }
+
+  public async downloadData(req: Request, response: Response) {
+    await this.getAllCows(req, response)
+      .then(resp => {
+        const header = Object.keys(resp[0]);
+        const parser = new Parser(header);
+        const csv = parser.parse(resp);
+        response.setHeader('Content-Type', 'text/csv');
+        response.setHeader('Content-Disposition', 'attachment; filename=tutorials.csv');
+        response.status(200)
+          .end(csv);
+      });
   }
 }

@@ -30,4 +30,8 @@ cowMilkRouter.put('/:id', async (req: Request, response: Response) => {
 cowMilkRouter.delete('/:id', async (request: Request, response: Response) => {
   await cowMilkProvider.deleteCow(request, response);
 });
+
+cowMilkRouter.get('/:items/:page/download', async (req, resp) => {
+  await cowMilkProvider.downloadData(req, resp);
+});
 export default cowMilkRouter;
