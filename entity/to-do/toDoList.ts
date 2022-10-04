@@ -1,13 +1,16 @@
 import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
-export class ReportState {
+export class ToDoList {
   @PrimaryGeneratedColumn()
     id: number;
 
   @Column()
-    viewValue: string;
+    check: boolean;
 
-  @Column({unique: true})
-    value: string;
+  @Column('text')
+    description: string;
+
+  @Column()
+    rating: boolean;
 }

@@ -36,54 +36,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cors = require("cors");
-var dotenv = require("dotenv");
 var express = require("express");
-var cow_1 = require("./controller/cow/cow");
-var graph_1 = require("./controller/cow/graph");
-var milkCow_1 = require("./controller/cow/milkCow");
-var report_1 = require("./controller/cow/report");
-var driver_1 = require("./controller/driver/driver");
-var toDo_1 = require("./controller/to-do/toDo");
-var data_source_1 = require("./data-source");
-var login_1 = require("./login/login");
-var app = express();
-var port = process.env.PORT || 3000;
-app.use(express.json());
-dotenv === null || dotenv === void 0 ? void 0 : dotenv.config({ path: './.env' });
-data_source_1.AppDataSource.initialize()
-    .then(function (resp) { return __awaiter(void 0, void 0, void 0, function () {
+var login_1 = require("../../login/login");
+var graph_service_1 = require("../../service/cow/graph.service");
+var graphRouter = express.Router();
+var graphProvider = new graph_service_1.GraphProvider();
+graphRouter.use(login_1.authenticationToken);
+graphRouter.post('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        console.log('Here you can setup and run express / fastify / any other framework.');
-        return [2 /*return*/];
-    });
-}); })
-    .catch(function (err) {
-    console.error('Error during Data Source initialization:', err);
-});
-app.use(cors());
-app.use(function (req, resp, next) {
-    console.log(req.body);
-    next();
-});
-app.use(login_1.default);
-app.use('/driver', driver_1.default);
-app.use('/cow/meat', cow_1.default);
-app.use('/cow/milk', milkCow_1.default);
-app.use('/cow/milk/reporting', report_1.default);
-app.use('/cow/milk/graph', graph_1.default);
-app.use('/to-do', toDo_1.default);
-app.get('/app', login_1.authenticationToken, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        console.log(req.body.message);
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0:
+                if (!req) return [3 /*break*/, 2];
+                return [4 /*yield*/, graphProvider.addedNewStateOfGraph(req, response)
+                        .then(function (report) {
+                        response.status(200)
+                            .send(report);
+                    })
+                        .catch(function (err) {
+                        response.status(500)
+                            .send('Server error ');
+                    })];
+            case 1:
+                _a.sent();
+                _a.label = 2;
+            case 2: return [2 /*return*/];
+        }
     });
 }); });
-app.get('', function (reqest, response) {
-    response.status(200)
-        .send('Please feel free to contribute here https://github.com/Vorkurt/flow-ring');
-});
-app.listen(port, function () {
-    console.log("\u26A1\uFE0F[server]: Server is running at http://localhost:".concat(port));
-});
-//# sourceMappingURL=server.js.map
+exports.default = graphRouter;
+//# sourceMappingURL=graph.js.map

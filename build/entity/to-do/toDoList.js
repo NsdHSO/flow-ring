@@ -9,27 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReportState = void 0;
+exports.ToDoList = void 0;
 var typeorm_1 = require("typeorm");
-var ReportState = /** @class */ (function () {
-    function ReportState() {
+var ToDoList = /** @class */ (function () {
+    function ToDoList() {
     }
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
         __metadata("design:type", Number)
-    ], ReportState.prototype, "id", void 0);
+    ], ToDoList.prototype, "id", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], ReportState.prototype, "viewValue", void 0);
+        __metadata("design:type", Boolean)
+    ], ToDoList.prototype, "check", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ unique: true }),
+        (0, typeorm_1.Column)('text'),
         __metadata("design:type", String)
-    ], ReportState.prototype, "value", void 0);
-    ReportState = __decorate([
+    ], ToDoList.prototype, "description", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", Boolean)
+    ], ToDoList.prototype, "rating", void 0);
+    ToDoList = __decorate([
         (0, typeorm_1.Entity)()
-    ], ReportState);
-    return ReportState;
+    ], ToDoList);
+    return ToDoList;
 }());
-exports.ReportState = ReportState;
-//# sourceMappingURL=report.js.map
+exports.ToDoList = ToDoList;
+//# sourceMappingURL=toDoList.js.map

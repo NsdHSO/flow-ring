@@ -19,7 +19,7 @@ var BaseCows = /** @class */ (function () {
         __metadata("design:type", Number)
     ], BaseCows.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
+        (0, typeorm_1.Column)({ unique: true }),
         __metadata("design:type", Number)
     ], BaseCows.prototype, "numberFromEar", void 0);
     __decorate([

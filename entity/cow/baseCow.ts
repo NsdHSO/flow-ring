@@ -4,7 +4,7 @@ export class BaseCows {
   @PrimaryGeneratedColumn()
     id: number;
 
-  @Column()
+  @Column({unique: true})
     numberFromEar: number;
 
   @Column()

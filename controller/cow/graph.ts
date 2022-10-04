@@ -1,23 +1,23 @@
 import type {Request, Response} from 'express';
 import * as express from 'express';
 import {authenticationToken} from '../../login/login';
-import {ReportProvider} from '../../service/cow/report.service';
+import {GraphProvider} from '../../service/cow/graph.service';
 
-const reportingRouter = express.Router();
-const reportProvider = new ReportProvider();
-reportingRouter.use(authenticationToken);
-reportingRouter.post(
+const graphRouter = express.Router();
+const graphProvider = new GraphProvider();
+graphRouter.use(authenticationToken);
+graphRouter.post(
   '/', async (req: Request, response: Response) => {
     if (req) {
-      await reportProvider.addedNewStateOfReport(req, response)
+      await graphProvider.addedNewStateOfGraph(req, response)
         .then(report => {
           response.status(200)
             .send(report);
-        }).catch(err => {
+        })
+        .catch(err => {
           response.status(500)
             .send('Server error ');
         });
     }
   });
-
-export default reportingRouter;
+export default graphRouter;

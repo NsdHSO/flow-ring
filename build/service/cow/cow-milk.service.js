@@ -40,15 +40,17 @@ exports.CowMilkProvider = void 0;
 var data_source_1 = require("../../data-source");
 var milkCow_1 = require("../../entity/cow/milk/milkCow");
 var numberInsemination_1 = require("../../entity/cow/milk/numberInsemination");
+var graph_service_1 = require("./graph.service");
 var report_service_1 = require("./report.service");
 var CowMilkProvider = /** @class */ (function () {
     function CowMilkProvider() {
         this.cowMilkRepository = data_source_1.AppDataSource.getRepository(milkCow_1.MilkCow);
         this._reportProvider = new report_service_1.ReportProvider();
+        this._graphProvider = new graph_service_1.GraphProvider();
     }
     CowMilkProvider.prototype.getAllCows = function (req, resp) {
         return __awaiter(this, void 0, void 0, function () {
-            var allItems, item, skip, report;
+            var allItems, item, skip, report, graph;
             var _a;
             return __generator(this, function (_b) {
                 switch (_b.label) {
@@ -65,15 +67,19 @@ var CowMilkProvider = /** @class */ (function () {
                         return [4 /*yield*/, this._reportProvider.getAllReport()];
                     case 2:
                         report = _b.sent();
+                        return [4 /*yield*/, this._graphProvider.getAllGraph()];
+                    case 3:
+                        graph = _b.sent();
                         _a = {};
                         return [4 /*yield*/, this.cowMilkRepository.createQueryBuilder('cow')
                                 .leftJoinAndSelect('cow.numberIn', 'numberIn')
                                 .take(item)
                                 .skip(skip)
                                 .getMany()];
-                    case 3: return [2 /*return*/, (_a.items = _b.sent(),
+                    case 4: return [2 /*return*/, (_a.items = _b.sent(),
                             _a.allItems = allItems,
                             _a.report = report,
+                            _a.graph = graph,
                             _a)];
                 }
             });

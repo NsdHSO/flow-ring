@@ -38,20 +38,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var login_1 = require("../../login/login");
-var report_service_1 = require("../../service/cow/report.service");
-var reportingRouter = express.Router();
-var reportProvider = new report_service_1.ReportProvider();
-reportingRouter.use(login_1.authenticationToken);
-reportingRouter.post('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+var toDo_service_1 = require("../../service/to-do/toDo.service");
+var toDoRouter = express.Router();
+var toDoProvider = new toDo_service_1.ToDoProvider();
+toDoRouter.use(login_1.authenticationToken);
+toDoRouter.post('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 if (!req) return [3 /*break*/, 2];
-                return [4 /*yield*/, reportProvider.addedNewStateOfReport(req, response)
+                return [4 /*yield*/, toDoProvider.addedNewToDo(req)
                         .then(function (report) {
                         response.status(200)
                             .send(report);
-                    }).catch(function (err) {
+                    })
+                        .catch(function (err) {
                         response.status(500)
                             .send('Server error ');
                     })];
@@ -62,5 +63,68 @@ reportingRouter.post('/', function (req, response) { return __awaiter(void 0, vo
         }
     });
 }); });
-exports.default = reportingRouter;
-//# sourceMappingURL=report.js.map
+toDoRouter.get('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (!req) return [3 /*break*/, 2];
+                return [4 /*yield*/, toDoProvider.getAllToDo()
+                        .then(function (report) {
+                        response.status(200)
+                            .send(report);
+                    })
+                        .catch(function (err) {
+                        response.status(500)
+                            .send('Server error ');
+                    })];
+            case 1:
+                _a.sent();
+                _a.label = 2;
+            case 2: return [2 /*return*/];
+        }
+    });
+}); });
+toDoRouter.patch('/:id', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (!req) return [3 /*break*/, 2];
+                return [4 /*yield*/, toDoProvider.update(req)
+                        .then(function (report) {
+                        response.status(200)
+                            .send(report);
+                    })
+                        .catch(function (err) {
+                        response.status(500)
+                            .send('Server error ');
+                    })];
+            case 1:
+                _a.sent();
+                _a.label = 2;
+            case 2: return [2 /*return*/];
+        }
+    });
+}); });
+toDoRouter.delete('/:id', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (!req) return [3 /*break*/, 2];
+                return [4 /*yield*/, toDoProvider.delete(req)
+                        .then(function (report) {
+                        response.status(200)
+                            .send(report);
+                    })
+                        .catch(function (err) {
+                        response.status(500)
+                            .send('Server error ');
+                    })];
+            case 1:
+                _a.sent();
+                _a.label = 2;
+            case 2: return [2 /*return*/];
+        }
+    });
+}); });
+exports.default = toDoRouter;
+//# sourceMappingURL=toDo.js.map

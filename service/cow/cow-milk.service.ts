@@ -3,6 +3,7 @@ import type {Repository} from 'typeorm';
 import {AppDataSource} from '../../data-source';
 import {MilkCow} from '../../entity/cow/milk/milkCow';
 import {NumberInsemination} from '../../entity/cow/milk/numberInsemination';
+import {GraphProvider} from './graph.service';
 import {ReportProvider} from './report.service';
 
 export class CowMilkProvider {
@@ -10,9 +11,12 @@ export class CowMilkProvider {
 
   private readonly _reportProvider: ReportProvider;
 
+  private readonly _graphProvider: GraphProvider;
+
   constructor() {
     this.cowMilkRepository = AppDataSource.getRepository(MilkCow);
     this._reportProvider = new ReportProvider();
+    this._graphProvider = new GraphProvider();
   }
 
   async getAllCows(req: Request, resp: Response) {
@@ -25,6 +29,7 @@ export class CowMilkProvider {
     const item = parseInt(req.params.items, 10);
     const skip = parseInt(req.params.page, 10);
     const report = await this._reportProvider.getAllReport();
+    const graph = await this._graphProvider.getAllGraph();
     return {
       items: await this.cowMilkRepository.createQueryBuilder('cow')
         .leftJoinAndSelect('cow.numberIn', 'numberIn')
@@ -33,6 +38,7 @@ export class CowMilkProvider {
         .getMany(),
       allItems,
       report,
+      graph,
     };
   }
 

@@ -9,27 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReportState = void 0;
+exports.GraphState = void 0;
 var typeorm_1 = require("typeorm");
-var ReportState = /** @class */ (function () {
-    function ReportState() {
+var GraphState = /** @class */ (function () {
+    function GraphState() {
     }
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
         __metadata("design:type", Number)
-    ], ReportState.prototype, "id", void 0);
+    ], GraphState.prototype, "id", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
-    ], ReportState.prototype, "viewValue", void 0);
+    ], GraphState.prototype, "viewValue", void 0);
     __decorate([
         (0, typeorm_1.Column)({ unique: true }),
         __metadata("design:type", String)
-    ], ReportState.prototype, "value", void 0);
-    ReportState = __decorate([
+    ], GraphState.prototype, "value", void 0);
+    GraphState = __decorate([
         (0, typeorm_1.Entity)()
-    ], ReportState);
-    return ReportState;
+    ], GraphState);
+    return GraphState;
 }());
-exports.ReportState = ReportState;
-//# sourceMappingURL=report.js.map
+exports.GraphState = GraphState;
+//# sourceMappingURL=graph.js.map
