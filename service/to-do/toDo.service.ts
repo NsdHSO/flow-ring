@@ -1,4 +1,4 @@
-import type {Request, Response} from 'express';
+import type {Request} from 'express';
 import type {Repository} from 'typeorm';
 import {AppDataSource} from '../../data-source';
 import {ToDoList} from '../../entity/to-do/toDoList';
@@ -36,12 +36,12 @@ export class ToDoProvider {
   }
 
   public async delete(req: Request) {
-    await this.toDoListRepository.findOne({
-      where: {
+    await this.toDoListRepository.createQueryBuilder()
+      .delete()
+      .from(ToDoList)
+      .where('id = :id', {
         id: parseInt(req.params.id, 10),
-      },
-    })
-      .then(async cow => this.toDoListRepository.delete(cow),
-      );
+      })
+      .execute();
   }
 }

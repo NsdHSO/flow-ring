@@ -13,6 +13,7 @@ import router, {authenticationToken} from './login/login';
 
 const app = express();
 const port = process.env.PORT || 3000;
+app.use(cors());
 app.use(express.json());
 dotenv?.config({path: './.env'});
 AppDataSource.initialize()
@@ -22,7 +23,6 @@ AppDataSource.initialize()
   .catch(err => {
     console.error('Error during Data Source initialization:', err);
   });
-app.use(cors());
 app.use((req, resp, next) => {
   console.log(req.body);
   next();

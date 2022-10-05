@@ -49,6 +49,7 @@ var data_source_1 = require("./data-source");
 var login_1 = require("./login/login");
 var app = express();
 var port = process.env.PORT || 3000;
+app.use(cors());
 app.use(express.json());
 dotenv === null || dotenv === void 0 ? void 0 : dotenv.config({ path: './.env' });
 data_source_1.AppDataSource.initialize()
@@ -61,7 +62,6 @@ data_source_1.AppDataSource.initialize()
     .catch(function (err) {
     console.error('Error during Data Source initialization:', err);
 });
-app.use(cors());
 app.use(function (req, resp, next) {
     console.log(req.body);
     next();
