@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd435ebb-b141-42d0-8fe9-a2f43e5b2d78" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vercelignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vercel.json" beforeDir="false" afterPath="$PROJECT_DIR$/vercel.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +91,9 @@
       <workItem from="1664307924882" duration="506000" />
       <workItem from="1664482219973" duration="33537000" />
       <workItem from="1664624840467" duration="3110000" />
-      <workItem from="1664750983691" duration="28591000" />
+      <workItem from="1664750983691" duration="31031000" />
+      <workItem from="1664980419899" duration="47000" />
+      <workItem from="1664980493240" duration="1459000" />
     </task>
     <servers />
   </component>
