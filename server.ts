@@ -13,7 +13,6 @@ import router, {authenticationToken} from './login/login';
 
 const app = express();
 const port = process.env.PORT || 3000;
-app.use(cors());
 app.use(express.json());
 dotenv?.config({path: './.env'});
 AppDataSource.initialize()
@@ -27,6 +26,7 @@ app.use((req, resp, next) => {
   console.log(req.body);
   next();
 });
+app.use(cors());
 app.use(router);
 app.use('/driver', routerDriver);
 app.use('/cow/meat', cowRouter);
