@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import type {Request, Response} from 'express';
 import * as express from 'express';
 import cowRouter from './controller/cow/cow';
+import dashboardRouter from './controller/cow/dashboard';
 import graphRouter from './controller/cow/graph';
 import cowMilkRouter from './controller/cow/milkCow';
 import reportingRouter from './controller/cow/report';
@@ -29,6 +30,7 @@ app.use((req, resp, next) => {
 app.use(cors());
 app.use(router);
 app.use('/driver', routerDriver);
+app.use('/dashboard', dashboardRouter);
 app.use('/cow/meat', cowRouter);
 app.use('/cow/milk', cowMilkRouter);
 app.use('/cow/milk/reporting', reportingRouter);
