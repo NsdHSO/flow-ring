@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Email} from '../email/email';
 
 @Entity()
 export class Elien {
@@ -18,6 +19,12 @@ export class Elien {
     type: 'text',
     nullable: true,
   })
+    label: string;
+
+  @Column({
+    type: 'text',
+    nullable: true,
+  })
     role: string;
 
   @Column('text')
@@ -28,4 +35,13 @@ export class Elien {
     nullable: true,
   })
     token: string;
+
+  @Column({
+    type: 'text',
+    nullable: true,
+  })
+    icon: string;
+
+  @OneToMany(() => Email, email => email.elien)
+    emailMessage: Email;
 }
