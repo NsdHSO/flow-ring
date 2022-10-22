@@ -13,8 +13,8 @@ export class Email {
   @Column('boolean')
     vote: boolean;
 
-  @Column('text')
-    label: string;
+  @Column({nullable: true})
+    label: number;
 
   @Column({
     type: 'text',

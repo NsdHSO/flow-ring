@@ -42,6 +42,28 @@ var email_service_1 = require("../../service/email/email.service");
 var emailRouter = express.Router();
 var emailProvider = new email_service_1.EmailProvider();
 emailRouter.use(login_1.authenticationToken);
+emailRouter.get('/search/:payload', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                console.log(req.params.payload);
+                return [4 /*yield*/, emailProvider.findAfterQuery(String(req.params.payload))
+                        .then(function (resp) {
+                        console.log(resp);
+                        response.status(200)
+                            .send(resp);
+                    })
+                        .catch(function (err) {
+                        console.log(err);
+                        response.status(500)
+                            .send('Server error 2');
+                    })];
+            case 1:
+                _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}); });
 emailRouter.post('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -64,18 +86,22 @@ emailRouter.post('/', function (req, response) { return __awaiter(void 0, void 0
         }
     });
 }); });
-emailRouter.get('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+emailRouter.get('/:items/:page', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+    var item, skip;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, emailProvider.getAllReport()
-                    .then(function (resp) {
-                    response.status(200)
-                        .send(resp);
-                })
-                    .catch(function (err) {
-                    response.status(500)
-                        .send('Server error ');
-                })];
+            case 0:
+                item = parseInt(req.params.items, 10);
+                skip = parseInt(req.params.page, 10);
+                return [4 /*yield*/, emailProvider.getAllEmail(item, skip)
+                        .then(function (resp) {
+                        response.status(200)
+                            .send(resp);
+                    })
+                        .catch(function (err) {
+                        response.status(500)
+                            .send('Server error');
+                    })];
             case 1:
                 _a.sent();
                 return [2 /*return*/];

@@ -37,39 +37,81 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailProvider = void 0;
+var typeorm_1 = require("typeorm");
 var data_source_1 = require("../../data-source");
 var email_1 = require("../../entity/email/email");
-var message_1 = require("../../entity/email/message");
 var Elien_1 = require("../../entity/user/Elien");
 var EmailProvider = /** @class */ (function () {
     function EmailProvider() {
         this.emailRepository = data_source_1.AppDataSource.getRepository(email_1.Email);
         this.elienRepository = data_source_1.AppDataSource.getRepository(Elien_1.Elien);
     }
-    EmailProvider.prototype.getAllReport = function () {
+    EmailProvider.prototype.getAllEmail = function (item, skip) {
+        if (item === void 0) { item = 10; }
+        if (skip === void 0) { skip = 1; }
+        return __awaiter(this, void 0, void 0, function () {
+            var total, emails;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.emailRepository.count()];
+                    case 1:
+                        total = _a.sent();
+                        return [4 /*yield*/, this.emailRepository.createQueryBuilder('email')
+                                .innerJoinAndSelect('email.description', 'description')
+                                .leftJoinAndSelect('email.elien', 'elien')
+                                .take(item)
+                                .skip(skip)
+                                .getMany()];
+                    case 2:
+                        emails = _a.sent();
+                        return [2 /*return*/, {
+                                emails: emails,
+                                total: total,
+                            }];
+                }
+            });
+        });
+    };
+    EmailProvider.prototype.findAfterQuery = function (query) {
+        if (query === void 0) { query = 'test'; }
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.emailRepository.createQueryBuilder()
+                return [2 /*return*/, this.emailRepository.createQueryBuilder('email')
+                        .innerJoinAndSelect('email.description', 'description')
+                        .leftJoinAndSelect('email.elien', 'elien')
+                        .where({ title: (0, typeorm_1.ILike)("%".concat(String(query), "%")) })
                         .getMany()];
             });
         });
     };
     EmailProvider.prototype.addedNewEmail = function (req, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var email, message;
+            var email;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         email = new email_1.Email();
-                        message = new message_1.Message();
                         email.title = req.body.title;
                         email.label = req.body.label;
                         email.visible = true;
                         email.typeOfPeople = '';
                         email.vote = false;
                         email.timestamp = new Date();
-                        message.description = req.body.description;
-                        email.description = message;
+                        email.description = req.body.description;
+                        switch (req.body.lable) {
+                            case 'Primary':
+                                email.label = 0;
+                                break;
+                            case 'Work':
+                                email.label = 1;
+                                break;
+                            case 'Friend':
+                                email.label = 2;
+                                break;
+                            default:
+                                email.label = 3;
+                                break;
+                        }
                         return [4 /*yield*/, this.elienRepository.findOne({
                                 where: {
                                     id: 3,

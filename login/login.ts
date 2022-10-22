@@ -1,11 +1,9 @@
 import * as bcrypt from 'bcrypt';
-import type {
-  Request,
-  Response,
-} from 'express';
+import type {Request, Response} from 'express';
 import * as jwt from 'jsonwebtoken';
 import {AppDataSource} from '../data-source';
 import {Elien} from '../entity/user/Elien';
+import {Permission} from '../entity/user/permission/permission';
 
 const express = require('express');
 const router = express.Router();
@@ -47,7 +45,7 @@ router.post(
     }
   },
 );
-router.get(
+router.post(
   '/elien/login',
   async (req: Request, res: Response) => {
     try {
@@ -60,12 +58,20 @@ router.get(
       );
       elien.token = accessToken ?? accessToken;
       const elienDAO = await AppDataSource.getRepository(Elien)
-        .findOneBy({id: elien.id});
-      await AppDataSource.getRepository(Elien)
-        .merge(
-          elienDAO,
-          elien,
-        );
+        .createQueryBuilder('elien')
+        .leftJoinAndSelect('elien.permission', 'permission')
+        .where({id: elien.id})
+        .getOne();
+      const action = [];
+      const label = [];
+      const permissionDAO = await AppDataSource.getRepository(Permission)
+        .createQueryBuilder('permission')
+        .where({id: elienDAO.permission.id})
+        .leftJoinAndSelect('permission.inbox', 'inbox')
+        .leftJoinAndSelect('inbox.actionEmail', 'action')
+        .leftJoinAndSelect('inbox.filterLabel', 'filterLabel')
+        .getOne();
+      const permission = permissionDAO;
       await AppDataSource.getRepository(Elien)
         .save(elienDAO);
       if (await bcrypt.compare(
@@ -74,6 +80,12 @@ router.get(
       )) {
         res.send({
           message: 'Success',
+          permission: {
+            inbox: {
+              actions: await permission.inbox.actionEmail,
+              label: await permission.inbox.filterLabel,
+            },
+          },
           token: accessToken,
         });
       } else {

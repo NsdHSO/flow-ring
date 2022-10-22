@@ -29,8 +29,8 @@ var Email = /** @class */ (function () {
         __metadata("design:type", Boolean)
     ], Email.prototype, "vote", void 0);
     __decorate([
-        (0, typeorm_1.Column)('text'),
-        __metadata("design:type", String)
+        (0, typeorm_1.Column)({ nullable: true }),
+        __metadata("design:type", Number)
     ], Email.prototype, "label", void 0);
     __decorate([
         (0, typeorm_1.Column)({

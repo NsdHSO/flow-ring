@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Elien = void 0;
 var typeorm_1 = require("typeorm");
-var email_1 = require("../email/email");
+var permission_1 = require("./permission/permission");
 var Elien = /** @class */ (function () {
     function Elien() {
     }
@@ -63,9 +63,10 @@ var Elien = /** @class */ (function () {
         __metadata("design:type", String)
     ], Elien.prototype, "icon", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return email_1.Email; }, function (email) { return email.elien; }),
-        __metadata("design:type", email_1.Email)
-    ], Elien.prototype, "emailMessage", void 0);
+        (0, typeorm_1.OneToOne)(function () { return permission_1.Permission; }),
+        (0, typeorm_1.JoinColumn)(),
+        __metadata("design:type", permission_1.Permission)
+    ], Elien.prototype, "permission", void 0);
     Elien = __decorate([
         (0, typeorm_1.Entity)()
     ], Elien);

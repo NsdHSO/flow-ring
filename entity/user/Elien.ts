@@ -1,5 +1,5 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {Email} from '../email/email';
+import {Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {Permission} from './permission/permission';
 
 @Entity()
 export class Elien {
@@ -42,6 +42,7 @@ export class Elien {
   })
     icon: string;
 
-  @OneToMany(() => Email, email => email.elien)
-    emailMessage: Email;
+  @OneToOne(() => Permission)
+  @JoinColumn()
+    permission: Permission;
 }
