@@ -58,7 +58,7 @@ var Email = /** @class */ (function () {
         __metadata("design:type", Elien_1.Elien)
     ], Email.prototype, "elienSender", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return chatMessage_1.ChatMessage; }, function (rece) { return rece.receiver; }, { cascade: ['insert', 'update'] }),
+        (0, typeorm_1.OneToMany)(function () { return chatMessage_1.ChatMessage; }, function (rece) { return rece.receiver; }, { cascade: ['insert', 'update'], eager: true }),
         __metadata("design:type", Array)
     ], Email.prototype, "messages", void 0);
     Email = __decorate([

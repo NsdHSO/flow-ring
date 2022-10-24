@@ -52,25 +52,41 @@ var EmailProvider = /** @class */ (function () {
         if (item === void 0) { item = 10; }
         if (skip === void 0) { skip = 1; }
         return __awaiter(this, void 0, void 0, function () {
-            var total, emails;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var total, emails, _i, emails_1, email, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0: return [4 /*yield*/, this.emailRepository.count()];
                     case 1:
-                        total = _a.sent();
+                        total = _b.sent();
                         return [4 /*yield*/, this.emailRepository.createQueryBuilder('email')
                                 .innerJoinAndSelect('email.description', 'description')
+                                .leftJoinAndSelect('email.messages', 'messages')
                                 .leftJoinAndSelect('email.elienSender', 'elien')
-                                .innerJoinAndSelect('email.messages', 'messages')
                                 .take(item)
                                 .skip(skip)
                                 .getMany()];
                     case 2:
-                        emails = _a.sent();
-                        return [2 /*return*/, {
-                                emails: emails,
-                                total: total,
-                            }];
+                        emails = _b.sent();
+                        _i = 0, emails_1 = emails;
+                        _b.label = 3;
+                    case 3:
+                        if (!(_i < emails_1.length)) return [3 /*break*/, 6];
+                        email = emails_1[_i];
+                        _a = email;
+                        return [4 /*yield*/, this.chatMessageRepository.createQueryBuilder('chat')
+                                .where('chat.email = :id', { id: email.id })
+                                .leftJoinAndSelect('chat.email', 'email')
+                                .getMany()];
+                    case 4:
+                        _a.messages = _b.sent();
+                        _b.label = 5;
+                    case 5:
+                        _i++;
+                        return [3 /*break*/, 3];
+                    case 6: return [2 /*return*/, {
+                            emails: emails,
+                            total: total,
+                        }];
                 }
             });
         });
@@ -191,6 +207,13 @@ var EmailProvider = /** @class */ (function () {
                         return [3 /*break*/, 9];
                     case 12: return [2 /*return*/, 'INSERT'];
                 }
+            });
+        });
+    };
+    EmailProvider.prototype.findById = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
             });
         });
     };

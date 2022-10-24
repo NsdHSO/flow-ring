@@ -39,7 +39,7 @@ export class Email {
   @OneToMany(
     () => ChatMessage,
     rece => rece.receiver,
-    {cascade: ['insert', 'update']},
+    {cascade: ['insert', 'update'], eager: true},
   )
     messages: ChatMessage[];
 }

@@ -23,11 +23,18 @@ export class EmailProvider {
     const total = await this.emailRepository.count();
     const emails = await this.emailRepository.createQueryBuilder('email')
       .innerJoinAndSelect('email.description', 'description')
+      .leftJoinAndSelect('email.messages', 'messages')
       .leftJoinAndSelect('email.elienSender', 'elien')
-      .innerJoinAndSelect('email.messages', 'messages')
       .take(item)
       .skip(skip)
       .getMany();
+    for (const email of emails) {
+      email.messages = await this.chatMessageRepository.createQueryBuilder('chat')
+        .where('chat.email = :id', {id: email.id})
+        .leftJoinAndSelect('chat.email', 'email')
+        .getMany();
+    }
+
     return {
       emails, total,
     };
@@ -97,7 +104,11 @@ export class EmailProvider {
       emailMessageG.email = email;
       await this.chatMessageRepository.save(emailMessageG);
     }
-    
+
     return 'INSERT';
+  }
+
+  public async findById() {
+
   }
 }
