@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Email = void 0;
 var typeorm_1 = require("typeorm");
 var Elien_1 = require("../user/Elien");
+var chatMessage_1 = require("./chatMessage");
 var message_1 = require("./message");
 var Email = /** @class */ (function () {
     function Email() {
@@ -55,7 +56,11 @@ var Email = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.ManyToOne)(function () { return Elien_1.Elien; }, function (elien) { return elien.email; }, { cascade: true, onDelete: 'CASCADE' }),
         __metadata("design:type", Elien_1.Elien)
-    ], Email.prototype, "elien", void 0);
+    ], Email.prototype, "elienSender", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return chatMessage_1.ChatMessage; }, function (rece) { return rece.receiver; }, { cascade: ['insert', 'update'] }),
+        __metadata("design:type", Array)
+    ], Email.prototype, "messages", void 0);
     Email = __decorate([
         (0, typeorm_1.Entity)()
     ], Email);

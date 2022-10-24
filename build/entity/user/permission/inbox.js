@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Inbox = void 0;
 var typeorm_1 = require("typeorm");
+var actionEmail_1 = require("./actionEmail");
+var label_1 = require("./label");
 var Inbox = /** @class */ (function () {
     function Inbox() {
     }
@@ -19,57 +21,13 @@ var Inbox = /** @class */ (function () {
         __metadata("design:type", Number)
     ], Inbox.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "newEmail", void 0);
+        (0, typeorm_1.ManyToOne)(function () { return actionEmail_1.ActionEmail; }, function (filter) { return filter.id; }, { cascade: true, onDelete: 'CASCADE', lazy: true }),
+        __metadata("design:type", actionEmail_1.ActionEmail)
+    ], Inbox.prototype, "actionEmail", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "inbox", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "starred", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "send", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "draft", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "spam", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "important", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "bin", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "filterPrimary", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "filterSocial", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "filterWork", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "filterFriends", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Boolean)
-    ], Inbox.prototype, "newLabel", void 0);
+        (0, typeorm_1.ManyToOne)(function () { return label_1.FilterLabel; }, function (filter) { return filter.id; }, { cascade: true, onDelete: 'CASCADE', lazy: true }),
+        __metadata("design:type", label_1.FilterLabel)
+    ], Inbox.prototype, "filterLabel", void 0);
     Inbox = __decorate([
         (0, typeorm_1.Entity)()
     ], Inbox);

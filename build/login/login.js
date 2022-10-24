@@ -41,6 +41,7 @@ var bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 var data_source_1 = require("../data-source");
 var Elien_1 = require("../entity/user/Elien");
+var permission_1 = require("../entity/user/permission/permission");
 var express = require('express');
 var router = express.Router();
 router.get('/elien', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -94,50 +95,72 @@ router.post('/elien', function (req, res) { return __awaiter(void 0, void 0, voi
         }
     });
 }); });
-router.get('/elien/login', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var eliens, elien, accessToken, elienDAO, e_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+router.post('/elien/login', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var eliens, elien, accessToken, elienDAO, permissionDAO, permission, _a, _b, e_2;
+    var _c, _d, _e;
+    return __generator(this, function (_f) {
+        switch (_f.label) {
             case 0:
-                _a.trys.push([0, 6, , 7]);
+                _f.trys.push([0, 10, , 11]);
                 return [4 /*yield*/, data_source_1.AppDataSource.getRepository(Elien_1.Elien)
                         .find()];
             case 1:
-                eliens = _a.sent();
+                eliens = _f.sent();
                 elien = eliens.find(function (res) { return res.name === req.body.name; });
                 accessToken = jwt.sign({ elien: elien }, process.env.ACCESS_TOKEN_SECRET);
                 elien.token = accessToken !== null && accessToken !== void 0 ? accessToken : accessToken;
                 return [4 /*yield*/, data_source_1.AppDataSource.getRepository(Elien_1.Elien)
-                        .findOneBy({ id: elien.id })];
+                        .createQueryBuilder('elien')
+                        .leftJoinAndSelect('elien.permission', 'permission')
+                        .where({ id: elien.id })
+                        .getOne()];
             case 2:
-                elienDAO = _a.sent();
-                return [4 /*yield*/, data_source_1.AppDataSource.getRepository(Elien_1.Elien)
-                        .merge(elienDAO, elien)];
+                elienDAO = _f.sent();
+                return [4 /*yield*/, data_source_1.AppDataSource.getRepository(permission_1.Permission)
+                        .createQueryBuilder('permission')
+                        .where({ id: elienDAO.permission.id })
+                        .leftJoinAndSelect('permission.inbox', 'inbox')
+                        .leftJoinAndSelect('inbox.actionEmail', 'action')
+                        .leftJoinAndSelect('inbox.filterLabel', 'filterLabel')
+                        .getOne()];
             case 3:
-                _a.sent();
+                permissionDAO = _f.sent();
+                permission = permissionDAO;
                 return [4 /*yield*/, data_source_1.AppDataSource.getRepository(Elien_1.Elien)
                         .save(elienDAO)];
             case 4:
-                _a.sent();
+                _f.sent();
                 return [4 /*yield*/, bcrypt.compare(req.body.password, elien.password)];
             case 5:
-                if (_a.sent()) {
-                    res.send({
-                        message: 'Success',
-                        token: accessToken,
-                    });
-                }
-                else {
-                    res.send('Not allowed');
-                }
-                return [3 /*break*/, 7];
+                if (!_f.sent()) return [3 /*break*/, 8];
+                _b = (_a = res).send;
+                _c = {
+                    message: 'Success'
+                };
+                _d = {};
+                _e = {};
+                return [4 /*yield*/, permission.inbox.actionEmail];
             case 6:
-                e_2 = _a.sent();
+                _e.actions = _f.sent();
+                return [4 /*yield*/, permission.inbox.filterLabel];
+            case 7:
+                _b.apply(_a, [(_c.permission = (_d.inbox = (_e.label = _f.sent(),
+                        _e),
+                        _d),
+                        _c.token = accessToken,
+                        _c)]);
+                return [3 /*break*/, 9];
+            case 8:
+                res.send('Not allowed');
+                _f.label = 9;
+            case 9: return [3 /*break*/, 11];
+            case 10:
+                e_2 = _f.sent();
                 console.log(e_2);
                 res.status(500)
                     .send('Dont have allowed ');
-                return [3 /*break*/, 7];
-            case 7: return [2 /*return*/];
+                return [3 /*break*/, 11];
+            case 11: return [2 /*return*/];
         }
     });
 }); });

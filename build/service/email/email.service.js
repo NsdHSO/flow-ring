@@ -39,12 +39,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailProvider = void 0;
 var typeorm_1 = require("typeorm");
 var data_source_1 = require("../../data-source");
+var chatMessage_1 = require("../../entity/email/chatMessage");
 var email_1 = require("../../entity/email/email");
 var Elien_1 = require("../../entity/user/Elien");
 var EmailProvider = /** @class */ (function () {
     function EmailProvider() {
         this.emailRepository = data_source_1.AppDataSource.getRepository(email_1.Email);
         this.elienRepository = data_source_1.AppDataSource.getRepository(Elien_1.Elien);
+        this.chatMessageRepository = data_source_1.AppDataSource.getRepository(chatMessage_1.ChatMessage);
     }
     EmailProvider.prototype.getAllEmail = function (item, skip) {
         if (item === void 0) { item = 10; }
@@ -58,7 +60,8 @@ var EmailProvider = /** @class */ (function () {
                         total = _a.sent();
                         return [4 /*yield*/, this.emailRepository.createQueryBuilder('email')
                                 .innerJoinAndSelect('email.description', 'description')
-                                .leftJoinAndSelect('email.elien', 'elien')
+                                .leftJoinAndSelect('email.elienSender', 'elien')
+                                .innerJoinAndSelect('email.messages', 'messages')
                                 .take(item)
                                 .skip(skip)
                                 .getMany()];
@@ -86,9 +89,9 @@ var EmailProvider = /** @class */ (function () {
     };
     EmailProvider.prototype.addedNewEmail = function (req, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var email;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var email, _a, emailMessages, _loop_1, this_1, _i, _b, chatMessage, _c, _d, emailMessages_1, emailMessageG;
+            return __generator(this, function (_e) {
+                switch (_e.label) {
                     case 0:
                         email = new email_1.Email();
                         email.title = req.body.title;
@@ -112,17 +115,81 @@ var EmailProvider = /** @class */ (function () {
                                 email.label = 3;
                                 break;
                         }
+                        _a = email;
+                        return [4 /*yield*/, this.elienRepository.findOne({ where: { id: req.body.elienId } })];
+                    case 1:
+                        _a.elienSender = _e.sent();
+                        emailMessages = Array();
+                        if (!(req.body.chatMessages.length > 0)) return [3 /*break*/, 5];
+                        _loop_1 = function (chatMessage) {
+                            var message;
+                            return __generator(this, function (_f) {
+                                switch (_f.label) {
+                                    case 0:
+                                        message = new chatMessage_1.ChatMessage();
+                                        message.description = chatMessage.description;
+                                        return [4 /*yield*/, this_1.elienRepository.findOne({ where: { id: chatMessage.senderId } })
+                                                .then(function (senderID) {
+                                                message.sender = senderID;
+                                            })];
+                                    case 1:
+                                        _f.sent();
+                                        return [4 /*yield*/, this_1.elienRepository.findOne({ where: { id: chatMessage.receiverId } })
+                                                .then(function (receiveMessageOnPort) {
+                                                message.receiver = receiveMessageOnPort;
+                                            })];
+                                    case 2:
+                                        _f.sent();
+                                        emailMessages.push(message);
+                                        return [2 /*return*/];
+                                }
+                            });
+                        };
+                        this_1 = this;
+                        _i = 0, _b = req.body.chatMessages;
+                        _e.label = 2;
+                    case 2:
+                        if (!(_i < _b.length)) return [3 /*break*/, 5];
+                        chatMessage = _b[_i];
+                        return [5 /*yield**/, _loop_1(chatMessage)];
+                    case 3:
+                        _e.sent();
+                        _e.label = 4;
+                    case 4:
+                        _i++;
+                        return [3 /*break*/, 2];
+                    case 5:
+                        _c = email;
+                        return [4 /*yield*/, emailMessages];
+                    case 6:
+                        _c.messages = _e.sent();
                         return [4 /*yield*/, this.elienRepository.findOne({
                                 where: {
-                                    id: 3,
+                                    name: req.body.name,
                                 },
                             })
                                 .then(function (elien) {
-                                email.elien = elien;
+                                email.elienSender = elien;
                             })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/, this.emailRepository.save(email)];
+                    case 7:
+                        _e.sent();
+                        return [4 /*yield*/, this.emailRepository.save(email)];
+                    case 8:
+                        _e.sent();
+                        _d = 0, emailMessages_1 = emailMessages;
+                        _e.label = 9;
+                    case 9:
+                        if (!(_d < emailMessages_1.length)) return [3 /*break*/, 12];
+                        emailMessageG = emailMessages_1[_d];
+                        emailMessageG.email = email;
+                        return [4 /*yield*/, this.chatMessageRepository.save(emailMessageG)];
+                    case 10:
+                        _e.sent();
+                        _e.label = 11;
+                    case 11:
+                        _d++;
+                        return [3 /*break*/, 9];
+                    case 12: return [2 /*return*/, 'INSERT'];
                 }
             });
         });

@@ -38,38 +38,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var login_1 = require("../../login/login");
-var email_service_1 = require("../../service/email/email.service");
-var emailRouter = express.Router();
-var emailProvider = new email_service_1.EmailProvider();
-emailRouter.use(login_1.authenticationToken);
-emailRouter.get('/search/:payload', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                console.log(req.params.payload);
-                return [4 /*yield*/, emailProvider.findAfterQuery(String(req.params.payload))
-                        .then(function (resp) {
-                        console.log(resp);
-                        response.status(200)
-                            .send(resp);
-                    })
-                        .catch(function (err) {
-                        console.log(err);
-                        response.status(500)
-                            .send('Server error 2');
-                    })];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
-emailRouter.post('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+var chat_message_service_1 = require("../../service/email/chat-message.service");
+var chatMessageRouter = express.Router();
+var chatMessageProvider = new chat_message_service_1.ChatMessageProvider();
+chatMessageRouter.use(login_1.authenticationToken);
+chatMessageRouter.post('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 if (!req) return [3 /*break*/, 2];
-                return [4 /*yield*/, emailProvider.addedNewEmail(req, response)
+                return [4 /*yield*/, chatMessageProvider.addedNewMessage(req)
                         .then(function (report) {
                         response.status(200)
                             .send(report);
@@ -86,28 +64,68 @@ emailRouter.post('/', function (req, response) { return __awaiter(void 0, void 0
         }
     });
 }); });
-emailRouter.get('/:items/:page', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
-    var item, skip;
+chatMessageRouter.get('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                item = parseInt(req.params.items, 10);
-                skip = parseInt(req.params.page, 10);
-                return [4 /*yield*/, emailProvider.getAllEmail(item, skip)
-                        .then(function (resp) {
+                if (!req) return [3 /*break*/, 2];
+                return [4 /*yield*/, chatMessageProvider.getAllToDo()
+                        .then(function (report) {
                         response.status(200)
-                            .send(resp);
+                            .send(report);
                     })
                         .catch(function (err) {
-                        console.error(err);
                         response.status(500)
-                            .send('Server error');
+                            .send('Server error ');
                     })];
             case 1:
                 _a.sent();
-                return [2 /*return*/];
+                _a.label = 2;
+            case 2: return [2 /*return*/];
         }
     });
 }); });
-exports.default = emailRouter;
-//# sourceMappingURL=email.js.map
+chatMessageRouter.patch('/:id', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (!req) return [3 /*break*/, 2];
+                return [4 /*yield*/, chatMessageProvider.update(req)
+                        .then(function (report) {
+                        response.status(200)
+                            .send(report);
+                    })
+                        .catch(function (err) {
+                        response.status(500)
+                            .send('Server error ');
+                    })];
+            case 1:
+                _a.sent();
+                _a.label = 2;
+            case 2: return [2 /*return*/];
+        }
+    });
+}); });
+chatMessageRouter.delete('/:id', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (!req) return [3 /*break*/, 2];
+                return [4 /*yield*/, chatMessageProvider.delete(req)
+                        .then(function (report) {
+                        response.status(200)
+                            .send(report);
+                    })
+                        .catch(function (err) {
+                        response.status(500)
+                            .send('Server error ');
+                    })];
+            case 1:
+                _a.sent();
+                _a.label = 2;
+            case 2: return [2 /*return*/];
+        }
+    });
+}); });
+exports.default = chatMessageRouter;
+//# sourceMappingURL=message.js.map

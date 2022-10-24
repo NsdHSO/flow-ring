@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Permission = void 0;
 var typeorm_1 = require("typeorm");
+var Elien_1 = require("../Elien");
 var inbox_1 = require("./inbox");
 var Permission = /** @class */ (function () {
     function Permission() {
@@ -24,6 +25,10 @@ var Permission = /** @class */ (function () {
         (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", inbox_1.Inbox)
     ], Permission.prototype, "inbox", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return Elien_1.Elien; }, function (elien) { return elien.permission; }),
+        __metadata("design:type", Array)
+    ], Permission.prototype, "elien", void 0);
     Permission = __decorate([
         (0, typeorm_1.Entity)()
     ], Permission);
