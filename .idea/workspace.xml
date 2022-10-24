@@ -5,26 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd435ebb-b141-42d0-8fe9-a2f43e5b2d78" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/entity/user/permission/actionEmail.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entity/user/permission/inbox.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entity/user/permission/label.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entity/user/permission/permission.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/email/message.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/email/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/email/email.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/email/email.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/email/email.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/email/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/email/email.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/email/email.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/email/email.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/user/Elien.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/user/Elien.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/user/Elien.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/user/Elien.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/server.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/server.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/service/email/email.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/email/email.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/service/email/email.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/email/email.service.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/email/email.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controller/email/email.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/email/chatMessage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/email/chatMessage.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity/email/email.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/email/email.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity/user/Elien.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/user/Elien.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/user/permission/permission.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/user/permission/permission.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/login/login.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/email/chat-message.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/service/email/chat-message.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/email/email.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/service/email/email.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +115,7 @@
       <workItem from="1665091067177" duration="1278000" />
       <workItem from="1665124023135" duration="4728000" />
       <workItem from="1665607298116" duration="4772000" />
-      <workItem from="1666420563128" duration="14947000" />
+      <workItem from="1666420563128" duration="37569000" />
     </task>
     <servers />
   </component>

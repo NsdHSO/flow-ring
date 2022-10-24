@@ -1,4 +1,5 @@
-import {Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {ChatMessage} from '../email/chatMessage';
 import {Permission} from './permission/permission';
 
 @Entity()
@@ -42,7 +43,15 @@ export class Elien {
   })
     icon: string;
 
-  @OneToOne(() => Permission)
+  @ManyToOne(() => Permission, permission => permission.elien)
   @JoinColumn()
     permission: Permission;
+
+  @OneToMany(() => ChatMessage, sender => sender.sender)
+  @JoinColumn()
+    sender: ChatMessage [];
+
+  @OneToMany(() => ChatMessage, rece => rece.receiver)
+  @JoinColumn()
+    receiver: ChatMessage[];
 }

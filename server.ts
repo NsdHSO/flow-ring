@@ -1,17 +1,18 @@
 import * as cors from 'cors';
 import * as dotenv from 'dotenv';
-import type { Request, Response } from 'express';
+import type {Request, Response} from 'express';
 import * as express from 'express';
 import cowRouter from './controller/cow/cow';
-import dashboardRouter from "./controller/cow/dashboard";
+import dashboardRouter from './controller/cow/dashboard';
 import graphRouter from './controller/cow/graph';
 import cowMilkRouter from './controller/cow/milkCow';
 import reportingRouter from './controller/cow/report';
 import routerDriver from './controller/driver/driver';
-import emailRouter from "./controller/email/email";
+import emailRouter from './controller/email/email';
+import chatMessageRouter from "./controller/email/message";
 import toDoRouter from './controller/to-do/toDo';
-import { AppDataSource } from './data-source';
-import router, { authenticationToken } from './login/login';
+import {AppDataSource} from './data-source';
+import router, {authenticationToken} from './login/login';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -25,7 +26,7 @@ AppDataSource.initialize()
     console.error('Error during Data Source initialization:', err);
   });
 app.use((req, resp, next) => {
-console.log(req.body);
+  console.log(req.body);
   next();
 });
 app.use(cors());
@@ -33,6 +34,7 @@ app.use(router);
 app.use('/driver', routerDriver);
 app.use('/dashboard', dashboardRouter);
 app.use('/email', emailRouter);
+app.use('/chat/message', chatMessageRouter);
 app.use('/cow/meat', cowRouter);
 app.use('/cow/milk', cowMilkRouter);
 app.use('/cow/milk/reporting', reportingRouter);

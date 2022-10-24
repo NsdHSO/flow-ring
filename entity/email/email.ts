@@ -1,5 +1,6 @@
-import {Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
 import {Elien} from '../user/Elien';
+import {ChatMessage} from './chatMessage';
 import {Message} from './message';
 
 @Entity()
@@ -33,5 +34,12 @@ export class Email {
     description: Message;
 
   @ManyToOne(() => Elien, elien => elien.email, {cascade: true, onDelete: 'CASCADE'})
-    elien: Elien;
+    elienSender: Elien;
+
+  @OneToMany(
+    () => ChatMessage,
+    rece => rece.receiver,
+    {cascade: ['insert', 'update']},
+  )
+    messages: ChatMessage[];
 }

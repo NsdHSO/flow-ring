@@ -2,24 +2,29 @@ import type {Request, Response} from 'express';
 import type {Repository} from 'typeorm';
 import {ILike} from 'typeorm';
 import {AppDataSource} from '../../data-source';
+import {ChatMessage} from '../../entity/email/chatMessage';
 import {Email} from '../../entity/email/email';
 import {Elien} from '../../entity/user/Elien';
 
 export class EmailProvider {
   emailRepository: Repository<Email>;
 
+  chatMessageRepository: Repository<ChatMessage>;
+
   elienRepository: Repository<Elien>;
 
   constructor() {
     this.emailRepository = AppDataSource.getRepository(Email);
     this.elienRepository = AppDataSource.getRepository(Elien);
+    this.chatMessageRepository = AppDataSource.getRepository(ChatMessage);
   }
 
   public async getAllEmail(item = 10, skip = 1) {
     const total = await this.emailRepository.count();
     const emails = await this.emailRepository.createQueryBuilder('email')
       .innerJoinAndSelect('email.description', 'description')
-      .leftJoinAndSelect('email.elien', 'elien')
+      .leftJoinAndSelect('email.elienSender', 'elien')
+      .innerJoinAndSelect('email.messages', 'messages')
       .take(item)
       .skip(skip)
       .getMany();
@@ -60,14 +65,39 @@ export class EmailProvider {
         break;
     }
 
+    email.elienSender = await this.elienRepository.findOne({where: {id: req.body.elienId}});
+    const emailMessages = Array<ChatMessage>();
+    if (req.body.chatMessages.length > 0) {
+      for (const chatMessage of req.body.chatMessages) {
+        const message = new ChatMessage();
+        message.description = chatMessage.description;
+        await this.elienRepository.findOne({where: {id: chatMessage.senderId}})
+          .then(senderID => {
+            message.sender = senderID;
+          });
+        await this.elienRepository.findOne({where: {id: chatMessage.receiverId}})
+          .then(receiveMessageOnPort => {
+            message.receiver = receiveMessageOnPort;
+          });
+        emailMessages.push(message);
+      }
+    }
+
+    email.messages = await emailMessages;
     await this.elienRepository.findOne({
       where: {
-        id: 3,
+        name: req.body.name,
       },
     })
       .then(elien => {
-        email.elien = elien;
+        email.elienSender = elien;
       });
-    return this.emailRepository.save(email);
+    await this.emailRepository.save(email);
+    for (const emailMessageG of emailMessages) {
+      emailMessageG.email = email;
+      await this.chatMessageRepository.save(emailMessageG);
+    }
+    
+    return 'INSERT';
   }
 }

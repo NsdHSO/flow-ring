@@ -62,8 +62,6 @@ router.post(
         .leftJoinAndSelect('elien.permission', 'permission')
         .where({id: elien.id})
         .getOne();
-      const action = [];
-      const label = [];
       const permissionDAO = await AppDataSource.getRepository(Permission)
         .createQueryBuilder('permission')
         .where({id: elienDAO.permission.id})

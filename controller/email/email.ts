@@ -20,8 +20,6 @@ emailRouter.get('/search/:payload', async (req: Request, response: Response) => 
         .send('Server error 2');
     });
 });
-
-
 emailRouter.post(
   '/', async (req: Request, response: Response) => {
     if (req) {
@@ -46,6 +44,7 @@ emailRouter.get('/:items/:page', async (req: Request, response: Response) => {
         .send(resp);
     })
     .catch(err => {
+      console.error(err);
       response.status(500)
         .send('Server error');
     });
