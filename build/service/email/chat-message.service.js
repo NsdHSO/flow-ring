@@ -39,11 +39,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChatMessageProvider = void 0;
 var data_source_1 = require("../../data-source");
 var chatMessage_1 = require("../../entity/email/chatMessage");
+var email_1 = require("../../entity/email/email");
 var Elien_1 = require("../../entity/user/Elien");
 var ChatMessageProvider = /** @class */ (function () {
     function ChatMessageProvider() {
         this.chatMessageRepository = data_source_1.AppDataSource.getRepository(chatMessage_1.ChatMessage);
         this.elienRepository = data_source_1.AppDataSource.getRepository(Elien_1.Elien);
+        this.emailRepository = data_source_1.AppDataSource.getRepository(email_1.Email);
     }
     ChatMessageProvider.prototype.getAllToDo = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -55,30 +57,30 @@ var ChatMessageProvider = /** @class */ (function () {
     };
     ChatMessageProvider.prototype.addedNewMessage = function (req) {
         return __awaiter(this, void 0, void 0, function () {
-            var newMessage;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var newMessage, _a, _b, _c;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
                     case 0:
                         newMessage = new chatMessage_1.ChatMessage();
-                        return [4 /*yield*/, this.elienRepository.createQueryBuilder('elien')
-                                .where('elien.id = :id', { id: req.body.elienId })
-                                .getOne()
-                                .then(function (r) { return newMessage.receiver = r; })
-                                .catch(function (err) {
-                                console.error(err);
+                        _a = newMessage;
+                        return [4 /*yield*/, this.emailRepository.findOneBy({
+                                id: parseInt(req.params.id, 10),
                             })];
                     case 1:
-                        _a.sent();
-                        return [4 /*yield*/, this.elienRepository.createQueryBuilder('elien')
-                                .where('elien.id = :id', { id: req.body.senderId })
-                                .getOne()
-                                .then(function (r) { return newMessage.sender = r; })
-                                .catch(function (err) {
-                                console.error(err);
+                        _a.email = _d.sent();
+                        newMessage.description = req.body.message;
+                        _b = newMessage;
+                        return [4 /*yield*/, this.elienRepository.findOneBy({
+                                id: parseInt(req.body.senderId, 10),
                             })];
                     case 2:
-                        _a.sent();
-                        newMessage.description = req.body.message;
+                        _b.receiver = _d.sent();
+                        _c = newMessage;
+                        return [4 /*yield*/, this.elienRepository.findOneBy({
+                                id: parseInt(req.body.elienId, 10),
+                            })];
+                    case 3:
+                        _c.sender = _d.sent();
                         return [2 /*return*/, this.chatMessageRepository.save(newMessage)];
                 }
             });
@@ -86,17 +88,39 @@ var ChatMessageProvider = /** @class */ (function () {
     };
     ChatMessageProvider.prototype.update = function (req) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
+            var newMessage, _a, _b, _c;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
+                    case 0:
+                        newMessage = new chatMessage_1.ChatMessage();
+                        _a = newMessage;
+                        return [4 /*yield*/, this.emailRepository.findOneBy({
+                                id: parseInt(req.params.id, 10),
+                            })];
+                    case 1:
+                        _a.email = _d.sent();
+                        newMessage.description = req.body.message;
+                        _b = newMessage;
+                        return [4 /*yield*/, this.elienRepository.findOneBy({
+                                id: parseInt(req.body.senderId, 10),
+                            })];
+                    case 2:
+                        _b.receiver = _d.sent();
+                        _c = newMessage;
+                        return [4 /*yield*/, this.elienRepository.findOneBy({
+                                id: parseInt(req.body.elienId, 10),
+                            })];
+                    case 3:
+                        _c.sender = _d.sent();
+                        return [2 /*return*/, this.chatMessageRepository.save(newMessage)];
+                }
             });
         });
     };
     ChatMessageProvider.prototype.delete = function (req) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
+        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/];
+        }); });
     };
     return ChatMessageProvider;
 }());

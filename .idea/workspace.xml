@@ -6,8 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="dd435ebb-b141-42d0-8fe9-a2f43e5b2d78" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/controller/driver/driver.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/driver/driver.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/controller/email/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/email/email.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/controller/email/email.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/email/email.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/controller/email/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/email/message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/controller/email/message.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/email/message.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/server.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/server.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service/email/chat-message.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/email/chat-message.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service/email/chat-message.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/email/chat-message.service.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service/email/email.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/email/email.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service/email/email.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/email/email.service.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/email/email.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controller/email/email.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/email/email.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/email/email.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/email/message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controller/email/message.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/cow/baseCow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/cow/baseCow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/login/login.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/email/chat-message.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/service/email/chat-message.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/email/email.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/service/email/email.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +123,10 @@
       <workItem from="1665091067177" duration="1278000" />
       <workItem from="1665124023135" duration="4728000" />
       <workItem from="1665607298116" duration="4772000" />
-      <workItem from="1666420563128" duration="38843000" />
+      <workItem from="1666420563128" duration="40402000" />
+      <workItem from="1666654855132" duration="488000" />
+      <workItem from="1666778814889" duration="5062000" />
+      <workItem from="1666959266490" duration="5822000" />
     </task>
     <servers />
   </component>
@@ -137,7 +155,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/login/login.ts</url>
           <line>58</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

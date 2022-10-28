@@ -6,8 +6,8 @@ import {ChatMessageProvider} from '../../service/email/chat-message.service';
 const chatMessageRouter = express.Router();
 const chatMessageProvider = new ChatMessageProvider();
 chatMessageRouter.use(authenticationToken);
-chatMessageRouter.post(
-  '/', async (req: Request, response: Response) => {
+chatMessageRouter.put(
+  '/:id', async (req: Request, response: Response) => {
     if (req) {
       await chatMessageProvider.addedNewMessage(req)
         .then(report => {

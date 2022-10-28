@@ -49,12 +49,12 @@ emailRouter.get('/:items/:page', async (req: Request, response: Response) => {
         .send('Server error');
     });
 });
-
-emailRouter.get('/b', async (req: Request, response: Response) => {
-  await emailProvider.findById().then(resp => {
-    response.status(200)
-      .send(resp);
-  })
+emailRouter.get('/:id', async (req: Request, response: Response) => {
+  await emailProvider.findById(parseInt(req.params.id, 10))
+    .then(resp => {
+      response.status(200)
+        .send(resp);
+    })
     .catch(err => {
       console.error(err);
       response.status(500)
