@@ -38,61 +38,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var login_1 = require("../../login/login");
-var cow_milk_service_1 = require("../../service/cow/cow-milk.service");
-var cowMilkRouter = express.Router();
-var cowMilkProvider = new cow_milk_service_1.CowMilkProvider();
-cowMilkRouter.use(login_1.authenticationToken);
-cowMilkRouter.get('/:items/:page', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+var file_upload_service_1 = require("../../service/file-upload/file-upload.service");
+var fileUploadRouter = express.Router();
+var fileUploadProvider = new file_upload_service_1.FileUploadProvider();
+fileUploadRouter.use(login_1.authenticationToken);
+fileUploadRouter.post('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, cowMilkProvider.getAllCows(req, response)
-                    .then(function (cows) { return response.status(200)
-                    .send(cows); })
-                    .catch(function (err) {
-                    return response.status(500)
-                        .send(err);
-                })];
+            case 0:
+                console.log(req.file);
+                if (!req) return [3 /*break*/, 2];
+                return [4 /*yield*/, fileUploadProvider.addedNewStateOfReport(req, 'dasdas')
+                        .then(function (report) {
+                        response.status(200)
+                            .send(report);
+                    })
+                        .catch(function (err) {
+                        response.status(500)
+                            .send('Server error ');
+                    })];
             case 1:
                 _a.sent();
-                return [2 /*return*/];
+                _a.label = 2;
+            case 2: return [2 /*return*/];
         }
     });
 }); });
-cowMilkRouter.post('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, cowMilkProvider.insertNewCow(req, response)
-                    .then(function (cows) { return response.status(200)
-                    .send(cows); })
-                    .catch(function (err) {
-                    response.status(500)
-                        .send(err);
-                })];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
-cowMilkRouter.put('/:id', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, cowMilkProvider.modifiedOneCow(req, response)];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
-cowMilkRouter.delete('/:id', function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, cowMilkProvider.deleteCow(request, response)];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
-exports.default = cowMilkRouter;
-//# sourceMappingURL=milkCow.js.map
+exports.default = fileUploadRouter;
+//# sourceMappingURL=file-upload.js.map

@@ -36,63 +36,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = require("express");
-var login_1 = require("../../login/login");
-var cow_milk_service_1 = require("../../service/cow/cow-milk.service");
-var cowMilkRouter = express.Router();
-var cowMilkProvider = new cow_milk_service_1.CowMilkProvider();
-cowMilkRouter.use(login_1.authenticationToken);
-cowMilkRouter.get('/:items/:page', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, cowMilkProvider.getAllCows(req, response)
-                    .then(function (cows) { return response.status(200)
-                    .send(cows); })
-                    .catch(function (err) {
-                    return response.status(500)
-                        .send(err);
-                })];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
-cowMilkRouter.post('/', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, cowMilkProvider.insertNewCow(req, response)
-                    .then(function (cows) { return response.status(200)
-                    .send(cows); })
-                    .catch(function (err) {
-                    response.status(500)
-                        .send(err);
-                })];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
-cowMilkRouter.put('/:id', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, cowMilkProvider.modifiedOneCow(req, response)];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
-cowMilkRouter.delete('/:id', function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, cowMilkProvider.deleteCow(request, response)];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
-exports.default = cowMilkRouter;
-//# sourceMappingURL=milkCow.js.map
+exports.FileUploadProvider = void 0;
+var data_source_1 = require("../../data-source");
+var databaseFile_1 = require("../../entity/email/databaseFile");
+var FileUploadProvider = /** @class */ (function () {
+    function FileUploadProvider() {
+        this.fileUploadRepository = data_source_1.AppDataSource.getRepository(databaseFile_1.DatabaseFile);
+    }
+    FileUploadProvider.prototype.getAllReport = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.fileUploadRepository.createQueryBuilder()
+                        .getMany()];
+            });
+        });
+    };
+    FileUploadProvider.prototype.addedNewStateOfReport = function (dataBuffer, fileName) {
+        return __awaiter(this, void 0, void 0, function () {
+            var newFile;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.fileUploadRepository.create({
+                            fileName: fileName,
+                            data: dataBuffer,
+                        })];
+                    case 1:
+                        newFile = _a.sent();
+                        return [4 /*yield*/, this.fileUploadRepository.save(newFile)];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/, newFile];
+                }
+            });
+        });
+    };
+    return FileUploadProvider;
+}());
+exports.FileUploadProvider = FileUploadProvider;
+//# sourceMappingURL=file-upload.service.js.map

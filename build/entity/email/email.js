@@ -13,6 +13,7 @@ exports.Email = void 0;
 var typeorm_1 = require("typeorm");
 var Elien_1 = require("../user/Elien");
 var chatMessage_1 = require("./chatMessage");
+var databaseFile_1 = require("./databaseFile");
 var message_1 = require("./message");
 var Email = /** @class */ (function () {
     function Email() {
@@ -61,6 +62,11 @@ var Email = /** @class */ (function () {
         (0, typeorm_1.OneToMany)(function () { return chatMessage_1.ChatMessage; }, function (rece) { return rece.receiver; }, { cascade: ['insert', 'update'], eager: true }),
         __metadata("design:type", Array)
     ], Email.prototype, "messages", void 0);
+    __decorate([
+        (0, typeorm_1.JoinColumn)(),
+        (0, typeorm_1.OneToOne)(function () { return databaseFile_1.DatabaseFile; }, { nullable: true }),
+        __metadata("design:type", databaseFile_1.DatabaseFile)
+    ], Email.prototype, "file", void 0);
     Email = __decorate([
         (0, typeorm_1.Entity)()
     ], Email);

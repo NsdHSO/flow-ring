@@ -1,6 +1,7 @@
 import {Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
 import {Elien} from '../user/Elien';
 import {ChatMessage} from './chatMessage';
+import {DatabaseFile} from './databaseFile';
 import {Message} from './message';
 
 @Entity()
@@ -42,4 +43,8 @@ export class Email {
     {cascade: ['insert', 'update'], eager: true},
   )
     messages: ChatMessage[];
+
+  @JoinColumn()
+  @OneToOne(() => DatabaseFile, {nullable: true})
+    file: DatabaseFile;
 }
