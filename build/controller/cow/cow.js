@@ -42,6 +42,15 @@ var cow_service_1 = require("../../service/cow/cow.service");
 var cowRouter = express.Router();
 var cowMeatProvider = new cow_service_1.CowMeatProvider();
 cowRouter.use(login_1.authenticationToken);
+cowRouter.get('/statistics', function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, cowMeatProvider.getAllCowsGraph()
+                .then(function (statistics) {
+                resp.status(200)
+                    .send(statistics);
+            })];
+    });
+}); });
 cowRouter.get('/', function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -77,9 +86,13 @@ cowRouter.post('/', function (req, resp) { return __awaiter(void 0, void 0, void
 cowRouter.get('/:id', function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                console.log(parseInt(req.params.id, 10));
-                return [4 /*yield*/, cowMeatProvider.getCowById(parseInt(req.params.id, 10))];
+            case 0: return [4 /*yield*/, cowMeatProvider.getCowById(parseInt(req.params.id, 10))
+                    .then(function (cows) { return resp.status(200)
+                    .send(cows); })
+                    .catch(function (err) {
+                    resp.status(500)
+                        .send(err);
+                })];
             case 1:
                 _a.sent();
                 return [2 /*return*/];

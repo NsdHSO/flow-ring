@@ -47,7 +47,13 @@ var CowMeatProvider = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, this.cowMeatRepository.createQueryBuilder('cow')
-                        .getMany()];
+                        .getMany()
+                        .then(function (array) {
+                        if (array.length === 0) {
+                            return [];
+                        }
+                        return array;
+                    })];
             });
         });
     };
@@ -75,6 +81,7 @@ var CowMeatProvider = /** @class */ (function () {
                 cow.state = req.body.state;
                 cow.group = req.body.group;
                 cow.gynecologicalStatus = req.body.gynecologicalStatus;
+                cow.gender = req.body.gender;
                 return [2 /*return*/, this.cowMeatRepository.save(cow)];
             });
         });
@@ -91,7 +98,6 @@ var CowMeatProvider = /** @class */ (function () {
                         })
                             .then(function (cow) {
                             cow[Object.keys(request.body)[0].split(':')[0]] = Object.values(request.body)[0];
-                            console.log(cow, 'TEST');
                             void _this.cowMeatRepository.save(request.body)
                                 .then(function (cow) {
                                 if (cow) {
@@ -130,6 +136,43 @@ var CowMeatProvider = /** @class */ (function () {
                         _a.sent();
                         return [2 /*return*/];
                 }
+            });
+        });
+    };
+    CowMeatProvider.prototype.getAllCowsGraph = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var inseminated, early, pregnant, calf;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.takeHowMuchCowSpecificState('Inseminated')];
+                    case 1:
+                        inseminated = _a.sent();
+                        return [4 /*yield*/, this.takeHowMuchCowSpecificState('Early')];
+                    case 2:
+                        early = _a.sent();
+                        return [4 /*yield*/, this.takeHowMuchCowSpecificState('Pregnant')];
+                    case 3:
+                        pregnant = _a.sent();
+                        return [4 /*yield*/, this.takeHowMuchCowSpecificState('Calf')];
+                    case 4:
+                        calf = _a.sent();
+                        return [2 /*return*/, [inseminated, early, pregnant, calf]];
+                }
+            });
+        });
+    };
+    CowMeatProvider.prototype.takeHowMuchCowSpecificState = function (state) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.cowMeatRepository.createQueryBuilder('cow')
+                        .where('cow.state=:stateId', { stateId: state })
+                        .getMany()
+                        .then(function (array) {
+                        if (array.length === 0) {
+                            return [].length;
+                        }
+                        return array.length;
+                    })];
             });
         });
     };
