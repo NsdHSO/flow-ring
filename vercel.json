@@ -6,12 +6,6 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "build/server.js"
-    }
-  ],
   "headers": [
     {
       "source": "http://localhost:4200",
