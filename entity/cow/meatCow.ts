@@ -3,6 +3,6 @@ import {BaseCows} from './baseCow';
 
 @Entity()
 export class MeatCow extends BaseCows {
-
-
+  @Column()
+    gender: number;
 }

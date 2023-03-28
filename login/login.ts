@@ -1,9 +1,9 @@
 import * as bcrypt from 'bcrypt';
-import type {Request, Response} from 'express';
+import type { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
-import {AppDataSource} from '../data-source';
-import {Elien} from '../entity/user/Elien';
-import {Permission} from '../entity/user/permission/permission';
+import { AppDataSource } from '../data-source';
+import { Elien } from '../entity/user/Elien';
+import { Permission } from '../entity/user/permission/permission';
 
 const express = require('express');
 const router = express.Router();

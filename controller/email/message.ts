@@ -24,7 +24,7 @@ chatMessageRouter.put(
 chatMessageRouter.get(
   '/', async (req: Request, response: Response) => {
     if (req) {
-      await chatMessageProvider.getAllToDo()
+      await chatMessageProvider.getAllMessage()
         .then(report => {
           response.status(200)
             .send(report);

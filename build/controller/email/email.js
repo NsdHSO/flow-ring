@@ -109,10 +109,10 @@ emailRouter.get('/:items/:page', function (req, response) { return __awaiter(voi
         }
     });
 }); });
-emailRouter.get('/:id', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
+emailRouter.get('/:id/:item/:skip', function (req, response) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, emailProvider.findById(parseInt(req.params.id, 10))
+            case 0: return [4 /*yield*/, emailProvider.findById(parseInt(req.params.item, 10), parseInt(req.params.skip, 10), parseInt(req.params.id, 10))
                     .then(function (resp) {
                     response.status(200)
                         .send(resp);

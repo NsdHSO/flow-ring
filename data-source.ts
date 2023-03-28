@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import {DataSource} from 'typeorm';
+import { DataSource } from 'typeorm';
 
 dotenv?.config({path: './.env'});
 export const AppDataSource = new DataSource({
@@ -18,8 +18,5 @@ export const AppDataSource = new DataSource({
     'entity/*.{ts,js}',
   ],
   migrations: [],
-  subscribers: [],
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  subscribers: []
 });

@@ -69,7 +69,7 @@ chatMessageRouter.get('/', function (req, response) { return __awaiter(void 0, v
         switch (_a.label) {
             case 0:
                 if (!req) return [3 /*break*/, 2];
-                return [4 /*yield*/, chatMessageProvider.getAllToDo()
+                return [4 /*yield*/, chatMessageProvider.getAllMessage()
                         .then(function (report) {
                         response.status(200)
                             .send(report);

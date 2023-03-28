@@ -18,8 +18,9 @@ export class ChatMessageProvider {
     this.emailRepository = AppDataSource.getRepository(Email);
   }
 
-  public async getAllToDo() {
+  public async getAllMessage() {
     return this.chatMessageRepository.createQueryBuilder()
+      .orderBy('time', 'ASC')
       .getMany();
   }
 
@@ -32,6 +33,7 @@ export class ChatMessageProvider {
       ),
     });
     newMessage.description = req.body.message;
+    newMessage.timestamp = new Date();
     newMessage.receiver = await this.elienRepository.findOneBy({
       id: parseInt(
         req.body.senderId,
@@ -44,6 +46,7 @@ export class ChatMessageProvider {
         10,
       ),
     });
+    
     return this.chatMessageRepository.save(newMessage);
   }
 

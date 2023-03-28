@@ -35,6 +35,10 @@ var ChatMessage = /** @class */ (function () {
         __metadata("design:type", Elien_1.Elien)
     ], ChatMessage.prototype, "receiver", void 0);
     __decorate([
+        (0, typeorm_1.Column)({ type: 'timestamp', nullable: true }),
+        __metadata("design:type", Date)
+    ], ChatMessage.prototype, "timestamp", void 0);
+    __decorate([
         (0, typeorm_1.ManyToOne)(function () { return email_1.Email; }, function (elien) { return elien.messages; }),
         (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", email_1.Email)

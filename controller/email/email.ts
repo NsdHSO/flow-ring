@@ -49,8 +49,8 @@ emailRouter.get('/:items/:page', async (req: Request, response: Response) => {
         .send('Server error');
     });
 });
-emailRouter.get('/:id', async (req: Request, response: Response) => {
-  await emailProvider.findById(parseInt(req.params.id, 10))
+emailRouter.get('/:id/:item/:skip', async (req: Request, response: Response) => {
+  await emailProvider.findById(parseInt(req.params.item, 10),parseInt(req.params.skip, 10),parseInt(req.params.id, 10))
     .then(resp => {
       response.status(200)
         .send(resp);

@@ -51,6 +51,15 @@ var CowMeatProvider = /** @class */ (function () {
             });
         });
     };
+    CowMeatProvider.prototype.getCowById = function (cowId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.cowMeatRepository.createQueryBuilder('cow')
+                        .where('cow.id=:id', { id: cowId })
+                        .getOne()];
+            });
+        });
+    };
     CowMeatProvider.prototype.addedCow = function (req, response) {
         var _a, _b, _c, _d, _e;
         return __awaiter(this, void 0, void 0, function () {
@@ -82,7 +91,8 @@ var CowMeatProvider = /** @class */ (function () {
                         })
                             .then(function (cow) {
                             cow[Object.keys(request.body)[0].split(':')[0]] = Object.values(request.body)[0];
-                            void _this.cowMeatRepository.save(cow)
+                            console.log(cow, 'TEST');
+                            void _this.cowMeatRepository.save(request.body)
                                 .then(function (cow) {
                                 if (cow) {
                                     return response.status(200)

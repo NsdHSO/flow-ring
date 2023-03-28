@@ -18,6 +18,9 @@ export class ChatMessage {
   @JoinColumn()
     receiver: Elien;
 
+  @Column({type: 'timestamp', nullable: true})
+    timestamp: Date;
+
   @ManyToOne(() => Email, elien => elien.messages)
   @JoinColumn()
     email: Email;

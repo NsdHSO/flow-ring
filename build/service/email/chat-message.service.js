@@ -47,10 +47,11 @@ var ChatMessageProvider = /** @class */ (function () {
         this.elienRepository = data_source_1.AppDataSource.getRepository(Elien_1.Elien);
         this.emailRepository = data_source_1.AppDataSource.getRepository(email_1.Email);
     }
-    ChatMessageProvider.prototype.getAllToDo = function () {
+    ChatMessageProvider.prototype.getAllMessage = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, this.chatMessageRepository.createQueryBuilder()
+                        .orderBy('time', 'ASC')
                         .getMany()];
             });
         });
@@ -69,6 +70,7 @@ var ChatMessageProvider = /** @class */ (function () {
                     case 1:
                         _a.email = _d.sent();
                         newMessage.description = req.body.message;
+                        newMessage.timestamp = new Date();
                         _b = newMessage;
                         return [4 /*yield*/, this.elienRepository.findOneBy({
                                 id: parseInt(req.body.senderId, 10),

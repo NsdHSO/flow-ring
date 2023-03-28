@@ -1,10 +1,10 @@
-import type {Request, Response} from 'express';
-import type {Repository} from 'typeorm';
-import {ILike} from 'typeorm';
-import {AppDataSource} from '../../data-source';
-import {ChatMessage} from '../../entity/email/chatMessage';
-import {Email} from '../../entity/email/email';
-import {Elien} from '../../entity/user/Elien';
+import type { Request, Response } from 'express';
+import type { Repository } from 'typeorm';
+import { ILike } from 'typeorm';
+import { AppDataSource } from '../../data-source';
+import { ChatMessage } from '../../entity/email/chatMessage';
+import { Email } from '../../entity/email/email';
+import { Elien } from '../../entity/user/Elien';
 
 export class EmailProvider {
   emailRepository: Repository<Email>;
@@ -65,6 +65,7 @@ export class EmailProvider {
     }
 
     email.elienSender = await this.elienRepository.findOne({where: {id: req.body.elienId}});
+    email.timestamp = new Date();
     const emailMessages = Array<ChatMessage>();
     if (req.body.chatMessages.length > 0) {
       for (const chatMessage of req.body.chatMessages) {
@@ -72,8 +73,9 @@ export class EmailProvider {
         message.description = chatMessage.description;
         await this.elienRepository.findOne({where: {id: chatMessage.senderId}})
           .then(senderID => {
-            message.sender = senderID;
+           message.sender = senderID;
           });
+        message.timestamp = new Date();
         await this.elienRepository.findOne({where: {id: chatMessage.receiverId}})
           .then(receiveMessageOnPort => {
             message.receiver = receiveMessageOnPort;
@@ -83,6 +85,38 @@ export class EmailProvider {
     }
 
     email.messages = await emailMessages;
+    await this.searchSenderAndSetOnEmail(req, email);
+    await this.emailRepository.save(email);
+    await this._setEmailAndSave(emailMessages, email);
+    return 'INSERT';
+  }
+
+  public async findById(item: number, skip: number, id: number) {
+    const email = await this.emailRepository.createQueryBuilder('email')
+      .where('email.id =:id', {id})
+      .getOne();
+    if (skip === 0) {
+      skip = 1;
+    }
+    email.messages = await this.chatMessageRepository.createQueryBuilder('chat')
+      .where({email})
+      .leftJoinAndSelect('chat.receiver', 'receiver')
+      .leftJoinAndSelect('chat.sender', 'sender')
+      .offset(item * skip)
+      .limit(item)
+      .getMany();
+
+
+    return {
+      email,
+      sender: await email.messages[0]?.sender,
+      receiver: await email.messages[0]?.receiver,
+    };
+  }
+
+  private async searchSenderAndSetOnEmail(
+    req: Request<any, any, any, any, any>,
+    email: Email): Promise<void> {
     await this.elienRepository.findOne({
       where: {
         name: req.body.name,
@@ -91,28 +125,13 @@ export class EmailProvider {
       .then(elien => {
         email.elienSender = elien;
       });
-    await this.emailRepository.save(email);
+  }
+
+  private async _setEmailAndSave(
+    emailMessages: ChatMessage[], email: Email): Promise<void> {
     for (const emailMessageG of emailMessages) {
       emailMessageG.email = email;
       await this.chatMessageRepository.save(emailMessageG);
     }
-
-    return 'INSERT';
-  }
-
-  public async findById(id: number) {
-    const email = await this.emailRepository.createQueryBuilder('email')
-      .where('email.id =:id', {id})
-      .getOne();
-    email.messages = await this.chatMessageRepository.createQueryBuilder('chat')
-      .where({email})
-      .leftJoinAndSelect('chat.receiver', 'receiver')
-      .leftJoinAndSelect('chat.sender', 'sender')
-      .getMany();
-    return {
-      email,
-      sender: email.messages[0].sender,
-      receiver: email.messages[0].receiver,
-    };
   }
 }

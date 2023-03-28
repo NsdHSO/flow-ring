@@ -5,41 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd435ebb-b141-42d0-8fe9-a2f43e5b2d78" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/controller/file-upload/file-upload.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entity/email/databaseFile.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/file-upload/file-upload.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/controller/cow/cow.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/cow/cow.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/controller/cow/cow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/cow/cow.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/cow/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/cow/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/cow/dashboard.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/cow/dashboard.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/cow/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/cow/graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/cow/graph.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/cow/graph.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/cow/milkCow.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/cow/milkCow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/cow/milkCow.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/cow/milkCow.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/cow/report.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/cow/report.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/cow/report.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/cow/report.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/driver/driver.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/driver/driver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/driver/driver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/driver/driver.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/controller/email/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/email/email.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/controller/email/email.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/email/email.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/controller/email/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/email/message.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/controller/email/message.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/email/message.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/to-do/toDo.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/to-do/toDo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/controller/to-do/toDo.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/controller/to-do/toDo.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/data-source.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/data-source.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/data-source.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/data-source.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/email/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/email/email.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/entity/email/email.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/email/email.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/entity/email/chatMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/email/chatMessage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/entity/email/chatMessage.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/entity/email/chatMessage.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/login/login.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/login/login.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/server.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/server.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service/cow/cow.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/cow/cow.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service/cow/cow.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/cow/cow.service.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service/email/chat-message.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/email/chat-message.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service/email/chat-message.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/email/chat-message.service.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service/email/email.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/email/email.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service/email/email.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/service/email/email.service.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/cow/cow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controller/cow/cow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/email/email.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controller/email/email.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/email/message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controller/email/message.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data-source.ts" beforeDir="false" afterPath="$PROJECT_DIR$/data-source.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/email/email.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/email/email.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/cow/meatCow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/cow/meatCow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/email/chatMessage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entity/email/chatMessage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/login/login.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/cow/cow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/service/cow/cow.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/email/chat-message.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/service/email/chat-message.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/email/email.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/service/email/email.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vercel.json" beforeDir="false" afterPath="$PROJECT_DIR$/vercel.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +64,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/davidnechiforel/Documents/work/nodejs/flow-ring/service/cow&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/davidnechiforel/Documents/work/nodejs/flow-ring&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -78,6 +72,9 @@
     &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/davidnechiforel/Documents/work/nodejs/flow-ring/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -144,7 +141,15 @@
       <workItem from="1666778814889" duration="5062000" />
       <workItem from="1666959266490" duration="6991000" />
       <workItem from="1667027582179" duration="1551000" />
-      <workItem from="1667199396242" duration="2510000" />
+      <workItem from="1667199396242" duration="3126000" />
+      <workItem from="1667565798808" duration="13053000" />
+      <workItem from="1667994751899" duration="41000" />
+      <workItem from="1670227848186" duration="7687000" />
+      <workItem from="1670501067189" duration="8162000" />
+      <workItem from="1675655049394" duration="1266000" />
+      <workItem from="1678571438281" duration="1811000" />
+      <workItem from="1680010947742" duration="698000" />
+      <workItem from="1680014957031" duration="251000" />
     </task>
     <servers />
   </component>
@@ -174,6 +179,11 @@
           <url>file://$PROJECT_DIR$/login/login.ts</url>
           <line>58</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/entity/user/permission/inbox.ts</url>
+          <line>13</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

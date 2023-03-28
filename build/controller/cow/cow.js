@@ -74,6 +74,18 @@ cowRouter.post('/', function (req, resp) { return __awaiter(void 0, void 0, void
         }
     });
 }); });
+cowRouter.get('/:id', function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                console.log(parseInt(req.params.id, 10));
+                return [4 /*yield*/, cowMeatProvider.getCowById(parseInt(req.params.id, 10))];
+            case 1:
+                _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}); });
 cowRouter.put('/:id', function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
